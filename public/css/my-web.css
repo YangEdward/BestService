@@ -1,0 +1,21 @@
+
+body {
+    text-align: center;
+    margin: 16px;
+    align-items: center;
+}
+.input-group{
+    margin-top: 16px;
+}
+.btn-default{
+    width: 20%;
+    padding: 8px;
+    margin: 16px;
+    font-size: larger;
+}
+.btn-success{
+    width: 20%;
+    padding: 8px;
+    margin: 16px;
+    font-size: larger;
+}
