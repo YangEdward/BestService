@@ -1,4 +1,4 @@
-<div class="container modal-footer" style="margin-top: 20px">
+<div class="container modal-footer" style="margin-top: 16px">
     <div class="row">
         <div class="col-md-6 text-left">
             <h4><strong>联系方式：</strong></h4>
