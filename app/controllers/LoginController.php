@@ -13,8 +13,6 @@ class LoginController extends BaseController {
 	public function login()
 	{
 		session_start();
-		echo 'Session id:'.session_id().'</br>';
-		echo 'Session id Length:'.strlen(session_id()).'</br>';
 		session_regenerate_id(true);
 		$results = DB::select('select * from users where id = ?',array(1));
 		$users = DB::table('users')->get();
