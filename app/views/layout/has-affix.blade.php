@@ -13,7 +13,7 @@
             @yield('content')
         </div>
         <div class="col-md-3">
-            @include('includes.affix',$affixes)
+            @include('includes.affix')
         </div>
     </div>
     @include('includes.footer')

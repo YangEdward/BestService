@@ -1,10 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2015/1/14
- * Time: 10:08
- */?>
 @extends('layout.master')
 @section('content')
     <div role="tabpanel">
@@ -27,7 +20,7 @@
         </ul>
     </div>
 
-    <div class="tab-content">
+    <div class="tab-content" style="margin-top: 16px">
         <div role="tabpanel" class="tab-pane fade in active" id="Android">
             @include('includes.android-tab')
         </div>

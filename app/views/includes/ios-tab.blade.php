@@ -5,6 +5,6 @@
     </div>
 
     <div class="col-md-9">
-
+        @include('includes.product',array('number' => '156'))
     </div>
 </div>

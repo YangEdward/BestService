@@ -8,7 +8,7 @@
 class ProjectController extends BaseController{
 
     public function hirePost(){
-
+        return View::Make('project.hire-post');
     }
 
     public function save(){

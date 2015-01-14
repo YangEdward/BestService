@@ -1,13 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2015/1/14
- * Time: 10:25
- */?>
-@extends('includes.master')
+@extends('layout.has-affix')
 @section('content')
     <div>
-
+        <p>1323645</p>
     </div>
 @stop

@@ -24,8 +24,8 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
                 <li><a href="/product/show">产品展示</a></li>
-                <li><a href="#">雇佣我们</a></li>
-                <li><a href="#">关于我们</a></li>
+                <li><a href="/project/hire-post">雇佣我们</a></li>
+                <li><a href="/about-us">关于我们</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
