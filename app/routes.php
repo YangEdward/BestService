@@ -18,9 +18,16 @@
 
 Route::get('/wel', 'WelcomeController@index');
 
-//Route::resource('admin', 'LoginController');
 
-Route::get('admin/login', 'LoginController@login');
+Route::get('/', 'LoginController@login');
+
+Route::get('product/show', 'ProductController@show');
+
+Route::get('project/hire-post', 'ProjectController@hirePost');
+
+Route::get('about-us', function(){
+	return View::make('about.about-us');
+});
 
 Route::get('/users', function()
 {

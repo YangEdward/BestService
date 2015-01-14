@@ -6,9 +6,8 @@
 <body>
 
     @include('includes.header')
-    @include('includes.carousel')
 
-    <div class="container">
+    <div class="container" style="margin-top: 70px">
         @yield('content')
         @include('includes.footer')
     </div>

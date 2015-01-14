@@ -1,6 +1,6 @@
 <div class="container modal-footer" style="margin-top: 16px">
     <div class="row">
-        <div class="col-md-6 text-left">
+        <div class="col-md-6 text-left text-primary">
             <h4><strong>联系方式：</strong></h4>
             <h5>
                 <mark>
@@ -13,7 +13,7 @@
                 </mark>
             </h5>
         </div>
-        <div class="col-md-6 text-left">
+        <div class="col-md-6 text-left text-primary">
             <h4><strong>©Copyright 2014-</strong></h4>
         </div>
     </div>
