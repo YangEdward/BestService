@@ -7,60 +7,86 @@
  */
 use Illuminate\Database\Eloquent;
 
-class CustomerProject extends Eloquent{
+class CustomerProject extends Eloquent {
 
     protected $fillable = array('name', 'email', 'password');
 
-    public function validate(){
-        // create the validation rules ------------------------
-        $rules = array(
-            'name'             => 'required', 						// just a normal required validation
-            'email'            => 'required|email|unique:ducks', 	// required and must be unique in the ducks table
-            'password'         => 'required',
-            'password_confirm' => 'required|same:password' 			// required and has to match the password field
-        );
+    protected  $errors;
 
-        // create custom validation messages ------------------
-        $messages = array(
-            'required' => 'The :attribute is really really really important.',
-            'same' 	=> 'The :others must match.'
-        );
+    protected $validator;
 
-        // do the validation ----------------------------------
-        // validate against the inputs from our form
-        $validator = Validator::make(Input::all(), $rules, $messages);
+    // create the validation rules ------------------------
+    protected static $rules = [
+        'name'             => 'required', 						// just a normal required validation
+        'email'            => 'required|email|unique:ducks', 	// required and must be unique in the ducks table
+        'password'         => 'required',
+        'password_confirm' => 'required|same:password' 			// required and has to match the password field
+    ];
 
-        // check if the validator failed -----------------------
-        if ($validator->fails()) {
-            // redirect our user back with error messages
-            $messages = $validator->messages();
+    // create custom validation messages ------------------
+    protected static $messages = [
+        'name.required' => 'My custom message for :attribute required',
+        'required' => 'The :attribute is really really really important.',
+        'same' 	=> 'The :others must match.'
+    ];
 
-            // also redirect them back with old inputs so they dont have to fill out the form again
-            // but we wont redirect them with the password they entered
-
-            return Redirect::to('ducks')
-                ->withErrors($validator)
-                ->withInput(Input::except('password', 'password_confirm'));
-
-        } else {
-            // validation successful ---------------------------
-
-            // our duck has passed all tests!
-            // let him enter the database
-
-            // create the data for our duck
-            $project = new CustomerProject;
-            $project->name = Input::get('name');
-            $project->email = Input::get('email');
-            $project->password = Hash::make(Input::get('password'));
-
-            // save our duck
-            $project->save();
-
-            // redirect ----------------------------------------
-            // redirect our user back to the form so they can do it all over again
-            return Redirect::to('ducks')
-                ->with('messages', 'Hooray!');
-        }
+    public function __construct(array $attributes = array(), Validator $validator = null)
+    {
+        parent::__construct($attributes);
+        $this->validator = $validator ?: \App::make('validator');
     }
+
+    public function process(){
+        return $this->hasMany('ProjectProcess');
+    }
+    /**
+     * Listen for save event
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::saving(function($model)
+        {
+            return $model->validate();
+        });
+    }
+
+    /**
+     * Validates current attributes against rules
+     */
+    public function validate()
+    {
+        $v = $this->validator->make($this->attributes, static::$rules, static::$messages);
+        if ($v->passes())
+        {
+            return true;
+        }
+        $this->setErrors($v->messages());
+        return false;
+    }
+
+    /**
+     * Set error message bag
+     *
+     * @var Illuminate\Support\MessageBag
+     */
+    protected function setErrors($errors)
+    {
+        $this->errors = $errors;
+    }
+    /**
+     * Retrieve error message bag
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+    /**
+     * Inverse of wasSaved
+     */
+    public function hasErrors()
+    {
+        return ! empty($this->errors);
+    }
+
 }

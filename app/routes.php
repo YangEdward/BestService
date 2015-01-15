@@ -18,6 +18,7 @@
 
 Route::get('/wel', 'WelcomeController@index');
 
+Route::resource('user', 'UserController');
 
 Route::get('/', 'LoginController@login');
 
