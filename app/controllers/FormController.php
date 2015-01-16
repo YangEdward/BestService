@@ -50,6 +50,11 @@ class FormController extends BaseController {
         View::share('input', Input::all());
     }
 
+    /**
+     * Display a listing of products
+     *
+     * @return Response
+     */
 
     public function index(){
 
@@ -67,37 +72,62 @@ class FormController extends BaseController {
             $builder->whereRaw($search['search'], [$value]);
         }
         $models = $builder->paginate(20);
-        //$models = User::All();
         return View::make('form.index', [
             'models' => $models
         ]);
     }
 
+    /**
+     * Show the form for creating a new product
+     *
+     * @return Response
+     */
     public function create(){
-        return View::make('form.create', []);
+        return View::make('form.create');
     }
+
+    /**
+     * Store a newly created product in storage.
+     *
+     * @return Response
+     */
 
     public function store(){
-        //$customer = new CustomerProject(Input::all());
-        $model = new $this->model;
-        $model->fill(Input::all());
-        if ($model->save()) {
-            return Redirect::back()
-                ->with('messages', '项目提交成功。谢谢您对我公司的信赖，我们会第一时间联系您!');
-            //return Redirect::route('dogs.index');
-        }
-        return Redirect::back()->withInput()->withErrors($model->getErrors());
 
-        /*$model = new $this->model;
+        $model = new $this->model;
+        $validator = Validator::make($data = Input::all(),$model->$rules);
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        $model->create($data);
         $model->save();
-        return Redirect::to(action($this->controller . '@index'));*/
+        return Redirect::to(action($this->controller . '@index'));
+
     }
+
+    /**
+     * Display the specified product.
+     *
+     * @param  int  $id
+     * @return Response
+     */
 
     public function show($id){
+
         $model = new $this->model;
-        $model = $model->find($id);
+        $model = $model->findOrFail($id);
         return View::make('form.show', compact('model'));
+
     }
+
+    /**
+     * Show the form for editing the specified product.
+     *
+     * @param  int  $id
+     * @return Response
+     */
 
     public function edit($id){
         $model = new $this->model;
@@ -105,19 +135,41 @@ class FormController extends BaseController {
         return View::make('form.edit', compact('model'));
     }
 
+    /**
+     * Update the specified product in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
     public function update($id){
+
         $model = new $this->model;
-        $model = $model->find($id);
-        $model->fill(Input::all());
-        $model->save();
+        $model = $model->findOrFail($id);
+
+        $validator = Validator::make($data = Input::all(), $model->$rules);
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        $model->update($data);
 
         return Redirect::to(action($this->controller . '@index'));
     }
 
+    /**
+     * Remove the specified product from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
     public function destroy($id){
+
         $model = new $this->model;
         $model->destroy($id);
-
         return Redirect::to(action($this->controller . '@index'));
     }
 }

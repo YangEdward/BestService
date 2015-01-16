@@ -22,9 +22,9 @@ Route::resource('user', 'UserController');
 
 Route::get('/', 'LoginController@login');
 
-Route::get('product/show', 'ProductController@show');
+Route::get('product/show', 'StyleController@show');
 
-Route::get('project/hire-post', 'ProjectController@hirePost');
+Route::get('project/hire-post', 'CustomerProjectController@hirePost');
 
 Route::get('about-us', function(){
 	return View::make('about.about-us');
