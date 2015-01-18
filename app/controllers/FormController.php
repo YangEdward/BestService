@@ -102,8 +102,8 @@ class FormController extends BaseController {
         }
 
         $model->create($data);
-        $model->save();
-        return Redirect::to(action($this->controller . '@index'));
+
+        return Redirect::route(action($this->controller . '@index'));
 
     }
 
@@ -156,7 +156,7 @@ class FormController extends BaseController {
 
         $model->update($data);
 
-        return Redirect::to(action($this->controller . '@index'));
+        return Redirect::route(action($this->controller . '@index'));
     }
 
     /**
@@ -170,6 +170,6 @@ class FormController extends BaseController {
 
         $model = new $this->model;
         $model->destroy($id);
-        return Redirect::to(action($this->controller . '@index'));
+        return Redirect::route(action($this->controller . '@index'));
     }
 }

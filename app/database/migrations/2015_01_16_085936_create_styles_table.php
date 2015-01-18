@@ -15,14 +15,16 @@ class CreateStylesTable extends Migration {
 		Schema::create('styles', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->foreign('components_id')->references('id')->on('components');
-			$table->char('pic_path',100)->unique();
+			$table->integer('components_id')->unsigned()->index();
+			$table->string('pic_path',100)->unique();
 			$table->integer('min_api')->default(14);
 			$table->integer('price')->nullable();
-			$table->char('title',100)->nullable();
+			$table->string('title',100)->nullable();
 			$table->text('descriptions')->nullable();
 			$table->integer('use_times')->nullable()->default(0);
 			$table->timestamps();
+			$table->foreign('components_id')->references('id')->on('components')->onDelete('cascade');
+
 		});
 	}
 

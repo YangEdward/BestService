@@ -5,12 +5,11 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "4.2.*",
-	  /*added by Edward
-	  * generators for model,view,controller,seed,pivot,migration,resource,scoffold
-	  */
-	  	"way/generators": "~3.0"
+		"laravel/framework": "4.2.*"
 	},
+  	"require-dev": {
+		"way/generators": "~2.0"
+  	},
 	"autoload": {
 		"classmap": [
 			"app/commands",
