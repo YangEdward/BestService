@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent;
 
 class CustomerProject extends Eloquent {
 
-    protected $fillable = array('name', 'email', 'password');
+    protected $fillable = array('title', 'brief', 'user_name','email',
+        'phone','finished_times');
 
     protected  $errors;
 
@@ -17,10 +18,12 @@ class CustomerProject extends Eloquent {
 
     // create the validation rules ------------------------
     protected static $rules = [
-        'name'             => 'required', 						// just a normal required validation
-        'email'            => 'required|email|unique:ducks', 	// required and must be unique in the ducks table
-        'password'         => 'required',
-        'password_confirm' => 'required|same:password' 			// required and has to match the password field
+        'title'             => 'required', 						// just a normal required validation
+        'belong'            => 'required', 	// required and must be unique in the ducks table
+        'user_name'         => 'required',
+        'email'             => 'required|email', 			// required and has to match the password field
+        'phone'             => 'required',
+        'file_path'         => 'required|unique'
     ];
 
     // create custom validation messages ------------------

@@ -17,6 +17,10 @@ class UserController extends FormController{
             ],
             'name' => [
                 'show' => '姓名',
+                'search' => [
+                    'type' => 'like',
+                    'value' => '%?%'
+                ],
                 'search' => "name like CONCAT('%', ?, '%')"
             ],
 
@@ -43,10 +47,6 @@ class UserController extends FormController{
             ],
             'updated_at' => [
                 'show' => '更新时间',
-            ],
-            'search' => [
-                'type' => 'like',
-                'value' => '%?%'
             ]
         ];
 

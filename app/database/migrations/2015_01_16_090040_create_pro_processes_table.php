@@ -18,7 +18,7 @@ class CreateProProcessesTable extends Migration {
 			$table->integer('users_id')->unsigned()->index();
 			$table->integer('customer_projects_id')->unsigned()->index();
 			$table->integer('last_id')->unsigned()->nullable();
-			$table->timestamps('finish_time')->nullable();
+			$table->timestamp('finish_time')->nullable();
 			$table->integer('status')->nullable();
 			$table->string('handle_person');
 			$table->text('back_reason')->nullable();

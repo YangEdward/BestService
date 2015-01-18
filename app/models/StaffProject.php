@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent;
 
 class StaffProject extends Eloquent{
 
+    // Add your validation rules here
+    public static $rules = [
+        'users_id' => 'required',
+        'belongs_to_id' => 'required',
+        'handle_times' => 'required|min:0',
+    ];
+
     public function myMaster(){
         return $this->belongsTo('User');
     }

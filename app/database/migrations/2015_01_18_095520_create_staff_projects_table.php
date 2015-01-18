@@ -18,7 +18,7 @@ class CreateStaffProjectsTable extends Migration {
 			$table->integer('users_id')->unsigned()->index();
 			$table->integer('belongs_to_id')->unsigned()->index();
 			$table->integer('handle_times');
-			$table->timestamps('finish_time')->nullable();
+			$table->timestamp('finish_time')->nullable();
 			$table->string('creator')->nullable();
 			$table->integer('is_back')->nullable();
 			$table->timestamps();

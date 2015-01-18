@@ -23,8 +23,8 @@ class CreateCustomerProjectsTable extends Migration {
 			$table->string('email',100);
 			$table->string('phone',20);
 			$table->integer('price')->nullable();
-			$table->timestamps('price_time')->nullable();
-			$table->timestamps('finished_times')->nullable();
+			$table->timestamp('price_time')->nullable();
+			$table->timestamp('finished_times')->nullable();
 			$table->string('file_path',100)->unique();
 			$table->integer('back_times')->nullable();
 			$table->integer('status')->nullable();
