@@ -18,7 +18,14 @@
 
 Route::get('/wel', 'WelcomeController@index');
 
-Route::resource('user', 'UserController');
+Route::resource('/admin/users', 'UserController');
+
+Route::get('/admin/users/show/{id}', 'UserController@show');
+Route::get('/admin/users/edit/{id}', 'UserController@edit');
+Route::get('/admin/users/destroy/{id}', 'UserController@destroy');
+Route::get('/admin/users/update/{id}', 'UserController@show');
+
+Route::resource('admin/main-class', 'ComponentController');
 
 Route::get('/', 'LoginController@login');
 

@@ -1,4 +1,4 @@
-@extends('layout.form')
+@extends('admin.layout.form')
 @section('content')
     <h3 class="text-center"><strong>项目信息提交</strong></h3>
     <p>请将您要提交的项目信息填写完整，便于优服科技给您提供更加优质的项目开发和管理服务。</p>

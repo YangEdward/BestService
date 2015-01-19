@@ -2,27 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{ HTML::style('/css/bootstrap.min.css') }}
-    {{ HTML::style('/dist/css/formValidation.min.css') }}
-
-    {{ HTML::script('/js/jquery-2.1.3.min.js') }}
-    {{ HTML::script('/js/bootstrap.min.js') }}
-    {{ HTML::script('/dist/js/formValidation.min.js') }}
-    {{ HTML::script('/dist/js/framework/bootstrap.min.js') }}
-
-    <style>
-        body{
-            padding-top: 70px;
-        }
-         textarea {
-             resize: none;
-         }
-    </style>
+    @include('admin.includes.head')
 </head>
 <body>
-@include('includes.header')
+@include('admin.includes.header')
     <div class="container">
 
             @if(Session::has('notice'))
@@ -48,6 +31,7 @@
             @endif
 
     @yield('content')
+    @include('includes.footer')
 </div>
 </body>
 </html>

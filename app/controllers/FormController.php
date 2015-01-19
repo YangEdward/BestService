@@ -10,6 +10,9 @@ class FormController extends BaseController {
     // 对应的模型
     protected $model;
 
+    // 名称
+    protected $name;
+
     // 所有的字段
     protected $fields_all;
 

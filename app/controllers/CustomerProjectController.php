@@ -6,7 +6,7 @@
  * Time: 23:25
  */
 
-class CustomerProjectController extends BaseController{
+class CustomerProjectController extends FormController{
 
     public function __construct()
     {
@@ -15,38 +15,54 @@ class CustomerProjectController extends BaseController{
             'id' => [
                 'show' => '序号',
             ],
-            'name' => [
-                'show' => '姓名',
-                'search' => "name like CONCAT('%', ?, '%')"
+            'title' => [
+                'show' => '项目标题',
+                'search' => [
+                    'type' => 'like',
+                    'value' => '%?%'
+                ]
             ],
-
-            'email' => [
-                'show' => '邮箱',
+            'belong' => [
+                'show' => '项目归类',
+            ],
+            'brief' => [
+                'show' => '项目简介',
+            ],
+            'user_name' => [
+                'show' => '项目提交人',
             ],
             'password' => [
                 'show' => '密码',
             ],
-            'tencent' => [
-                'show' => 'QQ',
+            'email' => [
+                'show' => '邮箱',
             ],
-            'telphone' => [
-                'show' => '手机号码',
+            'phone' => [
+                'show' => '联系方式',
             ],
-            'area' => [
-                'show' => '地域',
+            'price' => [
+                'show' => '报价',
             ],
-            'company' => [
-                'show' => '单位名称',
+            'price_time' => [
+                'show' => '报价时间',
+            ],
+            'finished_times' => [
+                'show' => '完成时间',
+            ],
+            'file_path' => [
+                'show' => '需求文件',
+            ],
+            'back_times' => [
+                'show' => '返工次数',
+            ],
+            'status' => [
+                'show' => '当前状态',
             ],
             'created_at' => [
                 'show' => '创建时间',
             ],
             'updated_at' => [
                 'show' => '更新时间',
-            ],
-            'search' => [
-                'type' => 'like',
-                'value' => '%?%'
             ]
         ];
 

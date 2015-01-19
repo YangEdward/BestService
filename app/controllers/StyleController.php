@@ -6,53 +6,55 @@
  * Time: 16:17
  */
 
-class StyleController extends BaseController{
+class StyleController extends FormController{
 
     public function __construct()
     {
-        $this->model = 'User';
+        $this->model = 'Style';
         $this->fields_all = [
             'id' => [
                 'show' => '序号',
             ],
-            'name' => [
+            'components_id' => [
                 'show' => '姓名',
-                'search' => "name like CONCAT('%', ?, '%')"
+                'type' => 'sector',
             ],
-
-            'email' => [
-                'show' => '邮箱',
+            'pic_path' => [
+                'show' => '演示文件',
+                'type' => 'file',
             ],
-            'password' => [
-                'show' => '密码',
+            'min_api' => [
+                'show' => 'Api版本',
             ],
-            'tencent' => [
-                'show' => 'QQ',
+            'price' => [
+                'show' => '报价',
             ],
-            'telphone' => [
-                'show' => '手机号码',
+            'title' => [
+                'show' => '效果标题',
+                'search' => [
+                    'type' => 'like',
+                    'value' => '%?%'
+                ]
             ],
-            'area' => [
-                'show' => '地域',
+            'descriptions' => [
+                'show' => '效果描述',
+                'type' => 'textarea',
             ],
-            'company' => [
-                'show' => '单位名称',
+            'use_times' => [
+                'show' => '使用次数',
             ],
             'created_at' => [
                 'show' => '创建时间',
             ],
             'updated_at' => [
                 'show' => '更新时间',
-            ],
-            'search' => [
-                'type' => 'like',
-                'value' => '%?%'
             ]
         ];
 
-        $this->fields_show = ['id' ,'name', 'email', 'telphone', 'tencent'];
-        $this->fields_edit = ['name','tencent', 'telphone','area','company'];
-        $this->fields_create = ['name', 'email', 'password','tencent','telphone','area','company'];
+        $this->fields_show = ['id' ,'title','pic_path','components_id','price','min_api', 'use_times',
+            'created_at'];
+        $this->fields_edit = ['title','pic_path', 'components_id','price','min_api','descriptions'];
+        $this->fields_create = ['title', 'pic_path', 'components_id','price','min_api','descriptions'];
         parent::__construct();
     }
 

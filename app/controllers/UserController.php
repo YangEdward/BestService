@@ -6,54 +6,123 @@
  * Time: 10:49
  */
 
-class UserController extends FormController{
+class UserController extends BaseController{
 
     public function __construct()
     {
-        $this->model = 'User';
-        $this->fields_all = [
-            'id' => [
-                'show' => '序号',
-            ],
-            'name' => [
-                'show' => '姓名',
-                'search' => [
-                    'type' => 'like',
-                    'value' => '%?%'
-                ],
-                'search' => "name like CONCAT('%', ?, '%')"
-            ],
 
-            'email' => [
-                'show' => '邮箱',
-            ],
-            'password' => [
-                'show' => '密码',
-            ],
-            'tencent' => [
-                'show' => 'QQ',
-            ],
-            'telphone' => [
-                'show' => '手机号码',
-            ],
-            'area' => [
-                'show' => '地域',
-            ],
-            'company' => [
-                'show' => '单位名称',
-            ],
-            'created_at' => [
-                'show' => '创建时间',
-            ],
-            'updated_at' => [
-                'show' => '更新时间',
-            ]
-        ];
-
-        $this->fields_show = ['id' ,'name', 'email', 'telphone', 'tencent'];
-        $this->fields_edit = ['name','tencent', 'telphone','area','company'];
-        $this->fields_create = ['name', 'email', 'password','tencent','telphone','area','company'];
-        parent::__construct();
     }
 
+    public function index(){
+
+        $builder = User::orderBy('id', 'asc');
+        $input = Input::all();
+        foreach ($input as $field => $value) {
+            if (empty($value)) {
+                continue;
+            }
+            if (!isset($this->fields_search[$field])) {
+                continue;
+            }
+            $search = $this->fields_search[$field];
+            $builder->whereRaw($search['search'], [$value]);
+        }
+        $models = $builder->paginate(20);
+        return View::make('admin.user.index', [
+            'models' => $models,
+            'title' => "用户管理"
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new product
+     *
+     * @return Response
+     */
+    public function create(){
+        return View::make('admin.user.create');
+    }
+
+    /**
+     * Store a newly created product in storage.
+     *
+     * @return Response
+     */
+
+    public function store(){
+
+        $model = new User;
+        $validator = Validator::make($data = Input::all(),User::$rules);
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        $model->create($data);
+
+        return Redirect::route(action('UserController@index'));
+
+    }
+
+    /**
+     * Display the specified product.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
+    public function show($id){
+
+        $model = User::findOrFail($id);
+        return View::make('admin.user.show', compact('model'));
+
+    }
+
+    /**
+     * Show the form for editing the specified product.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
+    public function edit($id){
+        $model = User::find($id);
+        return View::make('admin.user.edit', compact('model'));
+    }
+
+    /**
+     * Update the specified product in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
+    public function update($id){
+
+        $model = User::findOrFail($id);
+
+        $validator = Validator::make($data = Input::all(), User::$rules);
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        $model->update($data);
+
+        return Redirect::route(action('UserController@index'));
+    }
+
+    /**
+     * Remove the specified product from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
+    public function destroy($id){
+
+        User::destroy($id);
+        return Redirect::route(action('UserController@index'));
+    }
 }

@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'zh',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -189,6 +189,8 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
 
-	),
 
+		'String'          => 'Andrew13\Helpers\String', // String
+	),
+	'available_language' => array('en', 'zh'),
 );

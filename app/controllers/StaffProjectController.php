@@ -12,31 +12,29 @@ class StaffProjectController extends FormController{
     {
         $this->model = 'User';
         $this->fields_all = [
+
             'id' => [
                 'show' => '序号',
             ],
-            'name' => [
+            'users_id' => [
                 'show' => '姓名',
                 'search' => "name like CONCAT('%', ?, '%')"
             ],
 
-            'email' => [
+            'belongs_to_id' => [
                 'show' => '邮箱',
             ],
-            'password' => [
+            'handle_times' => [
                 'show' => '密码',
             ],
-            'tencent' => [
+            'finish_time' => [
                 'show' => 'QQ',
             ],
-            'telphone' => [
+            'creator' => [
                 'show' => '手机号码',
             ],
-            'area' => [
+            'is_back' => [
                 'show' => '地域',
-            ],
-            'company' => [
-                'show' => '单位名称',
             ],
             'created_at' => [
                 'show' => '创建时间',

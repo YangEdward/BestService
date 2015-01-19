@@ -15,27 +15,29 @@ class ProjectProcessController extends FormController{
             'id' => [
                 'show' => '序号',
             ],
-            'name' => [
+            'users_id' => [
                 'show' => '姓名',
                 'search' => "name like CONCAT('%', ?, '%')"
             ],
-
-            'email' => [
+            'customer_projects_id' => [
                 'show' => '邮箱',
             ],
-            'password' => [
+            'last_id' => [
                 'show' => '密码',
             ],
-            'tencent' => [
+            'finish_time' => [
                 'show' => 'QQ',
             ],
-            'telphone' => [
+            'status' => [
                 'show' => '手机号码',
             ],
-            'area' => [
+            'handle_person' => [
                 'show' => '地域',
             ],
-            'company' => [
+            'back_reason' => [
+                'show' => '单位名称',
+            ],
+            'answer' => [
                 'show' => '单位名称',
             ],
             'created_at' => [
