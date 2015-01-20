@@ -8,7 +8,8 @@
 
 class Style extends Eloquent {
 
-    protected $fillable = array('min_api', 'price', 'title','descriptions');
+    protected $fillable = array('components_id','pic_path','min_api',
+        'price', 'title','descriptions');
 
     // Add your validation rules here
     public static $rules = [

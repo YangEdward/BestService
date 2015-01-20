@@ -5,7 +5,6 @@
  * Date: 2015/1/14
  * Time: 23:26
  */
-use Illuminate\Database\Eloquent;
 
 class CustomerProject extends Eloquent {
 
@@ -16,8 +15,10 @@ class CustomerProject extends Eloquent {
 
     protected $validator;
 
+    protected $table = 'customer_projects';
+
     // create the validation rules ------------------------
-    protected static $rules = [
+    public static $rules = [
         'title'             => 'required', 						// just a normal required validation
         'belong'            => 'required', 	// required and must be unique in the ducks table
         'user_name'         => 'required',

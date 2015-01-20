@@ -22,10 +22,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
-                <li><a href="/product/show">产品展示</a></li>
-                <li><a href="/project/hire-post">雇佣我们</a></li>
-                <li><a href="/about-us">关于我们</a></li>
+                <li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="/">首页 <span class="sr-only">(current)</span></a></li>
+                <li {{ (Request::is('product/show') ? ' class="active"' : '') }}><a href="/product/show">产品展示</a></li>
+                <li {{ (Request::is('project/hire-post') ? ' class="active"' : '') }}><a href="/project/hire-post">雇佣我们</a></li>
+                <li {{ (Request::is('about-us') ? ' class="active"' : '') }}><a href="/about-us">关于我们</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

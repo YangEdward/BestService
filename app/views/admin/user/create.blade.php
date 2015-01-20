@@ -10,6 +10,9 @@
 @section('title')
     {{{ '用户管理->添加' }}}
 @stop
+@section('styles')
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+@stop
 @section('content')
     <div class="page-header">
         <h3>
@@ -35,10 +38,11 @@
             <div class="form-group">
                 <label for="password" class="col-md-2 control-label">密码：</label>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" id="password" name="password" placeholder="请输入您的密码">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="请输入您的密码"
+                           value="{{ Input::old('password') }}">
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" id="conform_password" name="conform_password" placeholder="请确认密码">
+                    <input type="password" class="form-control" id="conform_password" name="conform_password" placeholder="请确认密码">
                 </div>
             </div>
             <div class="form-group">
@@ -118,8 +122,8 @@
                         //row: '.col-md-6',
                         validators: {
                             identical: {
-                                max: 300,
-                                message: '项目描述内容不可超过300字'
+                                field: 'password',
+                                message: '确认密码与密码不一致'
                             }
                         }
                     },

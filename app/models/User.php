@@ -12,14 +12,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	// Add your validation rules here
 	public static $rules = [
 		'name' => 'required',
-		'password' => 'required',
 		'email' => 'required|email',
 		'telphone' => 'required',
 		'area' => 'required|max:18',
-		'role' => 'required',
 	];
 	// Don't forget to fill this array
-	protected $fillable = array('area', 'name', 'email','tencent',
+	protected $fillable = array('area', 'password','name', 'email','tencent',
 		'telphone','company');
 
 	/**

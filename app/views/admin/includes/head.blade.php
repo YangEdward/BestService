@@ -23,7 +23,7 @@
 		================================================== -->
 {{ HTML::style('/css/bootstrap.min.css') }}
 {{ HTML::style('/dist/css/formValidation.min.css') }}
-
+@yield('styles')
 <style>
     body{
         padding-top: 70px;
@@ -31,8 +31,6 @@
     textarea {
         resize: none;
     }
-    @section('styles')
-    @show
 </style>
     <!-- script
             ================================================== -->

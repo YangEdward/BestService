@@ -20,47 +20,53 @@
         </h3>
     </div>
     <div class="row">
-        <form id="defaultForm" class="form-horizontal" method="post" action="{{URL::to("/admin/users/update", $model->id)}}">
+        <form id="defaultForm" class="form-horizontal" method="post" action="{{URL::to("/admin/style/update", $model->id)}}">
             <div class="form-group">
-                <label for="name" class="col-md-2 control-label">姓名：</label>
+                <label for="title" class="col-md-2 control-label">标题：</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="请输入您的姓名或者称呼"
-                           value="{{ $model->name }}">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="请输入您的姓名或者称呼"
+                           value="{{ $model->title }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="email" class="col-md-2 control-label">邮箱：</label>
+                <label for="components_id" class="col-md-2 control-label">所属类型：</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="email" name="email" placeholder="请输入您的邮箱"
-                           value="{{ $model->email }}">
+                    <select class="form-control" id="components_id" name="components_id">
+                        <option value="Android">Android</option>
+                        <option value="Ios">Ios</option>
+                        <option value="Web">Web</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
-                <label for="telphone" class="col-md-2 control-label">联系方式：</label>
+                <label for="min_api" class="col-md-2 control-label">Api限制：</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="telphone" name="telphone" placeholder="请输入您的联系方式"
-                           value="{{ $model->telphone }}">
+                    <select class="form-control" id="min_api" name="min_api">
+                        @for($i= 8;$i<22;$i++)
+                            <option value="{{{$i}}}">{{{$i}}}</option>
+                        @endfor
+                    </select>
                 </div>
             </div>
             <div class="form-group">
-                <label for="tencent" class="col-md-2 control-label">QQ：</label>
+                <label for="price" class="col-md-2 control-label">价格：</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="tencent" name="tencent" placeholder="请输入您的社交QQ"
-                           value="{{ $model->tencent }}">
+                    <input type="text" class="form-control" id="price" name="price" placeholder="请输入您的姓名或者称呼"
+                           value="{{ $model->price }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="area" class="col-md-2 control-label">您住在哪里：</label>
+                <label for="descriptions" class="col-md-2 control-label">描述：</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="area" name="area" placeholder="敢问阁下来自哪里？"
-                           value="{{ $model->area }}">
+                    <textarea type="text" class="form-control" id="descriptions" name="descriptions" placeholder="简单介绍信息"
+                              rows="6">{{ $model->descriptions }}</textarea>
                 </div>
             </div>
+
             <div class="form-group">
-                <label for="company" class="col-md-2 control-label">单位名称：</label>
+                <label for="inputFile" class="col-md-2 control-label">样式文件上传：</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="company" name="company" placeholder="阁下任职于那个单位？"
-                           value="{{ $model->company }}">
+                    <input type="file" id="inputFile" name="inputFile">
                 </div>
             </div>
             <div class="form-group">
@@ -84,42 +90,37 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    area: {
+                    title: {
                         validators: {
                             notEmpty: {
-                                message: '请填写您的地址'
+                                message: '标题不可为空哦'
                             },
                             stringLength: {
-                                max: 20,
-                                message: '地址信息过长哦，莫超过20个汉字或字符'
+                                max: 100,
+                                message: '地址信息过长哦，莫超过100个汉字或字符'
                             }
                         }
                     },
-                    name: {
-                        message: 'The username is not valid',
+                    price: {
                         validators: {
-                            notEmpty: {
-                                message: '请填写您的称呼'
-                            },
-                            stringLength: {
-                                max: 20,
-                                message: '称呼过长哦'
+                            integer: {
+                                message: '需写入整数哦'
                             }
-
                         }
                     },
-                    email: {
+                    descriptions: {
                         validators: {
                             notEmpty: {
-                                message: '请填写您的邮箱地址'
+                                message: '描述不可为空哦'
                             },
-                            emailAddress: {
-                                message: '请检查邮箱地址，格式是否正确。'
+                            stringLength: {
+                                max: 300,
+                                message: '描述限制300汉字哦'
                             }
                         }
                     },
 
-                    telphone: {
+                    inputFile: {
                         validators: {
                             notEmpty: {
                                 message: '请填写您的联系方式'

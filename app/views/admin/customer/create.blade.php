@@ -1,9 +1,26 @@
-@extends('layout.master')
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2015/1/15
+ * Time: 13:54
+ */
+?>
+@extends('admin.layout.form')
+@section('title')
+    {{{ '客户项目管理->添加' }}}
+@stop
+@section('styles')
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+@stop
 @section('content')
-    <h3 class="text-center"><strong>项目信息提交</strong></h3>
-    <p>请将您要提交的项目信息填写完整，便于优服科技给您提供更加优质的项目开发和管理服务。</p>
-    <div class="row">
-        <form id="defaultForm" method="post" class="form-horizontal" action="/">
+    <div class="page-header">
+        <h3>
+            {{{ '客户项目管理->添加' }}}
+        </h3>
+    </div>
+    <div class="container row">
+        <form id="defaultForm" method="post" class="form-horizontal" action="{{action("CustomerProjectController@store")}}">
             <div class="form-group">
                 <label for="title" class="col-md-2 control-label">项目名称：</label>
                 <div class="col-md-6">
@@ -14,28 +31,28 @@
 
             <div class="form-group">
                 <label class="col-md-2 control-label">项目类型：</label>
-                    <div class="col-md-2">
-                        <label>
-                            <input type="checkbox" name="belong" value="android" /> Android应用
-                        </label>
-                    </div>
-                    <div class="col-md-2">
-                        <label>
-                            <input type="checkbox" name="belong" value="ios" /> Ios应用
-                        </label>
-                    </div>
-                    <div class="col-md-2">
-                        <label>
-                            <input type="checkbox" name="belong" value="web" /> Web应用
-                        </label>
-                    </div>
+                <div class="col-md-2">
+                    <label>
+                        <input type="checkbox" name="belong" value="android" /> Android应用
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label>
+                        <input type="checkbox" name="belong" value="ios" /> Ios应用
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label>
+                        <input type="checkbox" name="belong" value="web" /> Web应用
+                    </label>
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="description" class="col-md-2 control-label">项目概述：</label>
                 <div class="col-md-6">
                     <textarea type="text" class="form-control" id="description" name="description"
-                      placeholder="请输入项目概述" rows="6" value="{{ Input::old('description') }}"></textarea>
+                              placeholder="请输入项目概述" rows="6" value="{{ Input::old('description') }}"></textarea>
                 </div>
             </div>
 
@@ -92,7 +109,7 @@
                 </div>
             </div>
             <div class="form-group">
-                    <button type="submit" class="col-md-offset-4 btn btn-success">点击这里提交</button>
+                <button type="submit" class="col-md-offset-4 btn btn-success">点击这里提交</button>
             </div>
         </form>
     </div>

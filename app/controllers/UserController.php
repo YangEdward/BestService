@@ -8,8 +8,7 @@
 
 class UserController extends BaseController{
 
-    public function __construct()
-    {
+    public function postLogin(){
 
     }
 
@@ -58,9 +57,9 @@ class UserController extends BaseController{
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
-        $model->create($data);
-
-        return Redirect::route(action('UserController@index'));
+        $model->create(Input::all());
+        Session::flash('notice', '用户添加成功！！');
+        return Redirect::to('/admin/users');
 
     }
 
@@ -110,7 +109,7 @@ class UserController extends BaseController{
 
         $model->update($data);
 
-        return Redirect::route(action('UserController@index'));
+        return Redirect::to('/admin/users');
     }
 
     /**
@@ -123,6 +122,6 @@ class UserController extends BaseController{
     public function destroy($id){
 
         User::destroy($id);
-        return Redirect::route(action('UserController@index'));
+        return Redirect::to('/admin/users');
     }
 }

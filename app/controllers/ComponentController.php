@@ -18,10 +18,6 @@ class ComponentController extends BaseController{
         ],
     ];
 
-    public function __construct()
-    {
-
-    }
     /**
      * Display a listing of products
      *
@@ -73,8 +69,7 @@ class ComponentController extends BaseController{
         }
 
         $model->create($data);
-
-        return Redirect::route(action($this. '@index'));
+        return Redirect::to('/admin/main-class');
 
     }
 
@@ -124,7 +119,7 @@ class ComponentController extends BaseController{
 
         $model->update($data);
 
-        return Redirect::route(action($this. '@index'));
+        return Redirect::to('/admin/main-class');
     }
 
     /**
@@ -137,6 +132,6 @@ class ComponentController extends BaseController{
     public function destroy($id){
 
         Component::destroy($id);
-        return Redirect::route(action($this. '@index'));
+        return Redirect::to('/admin/main-class');
     }
 }

@@ -6,61 +6,126 @@
  * Time: 16:17
  */
 
-class StyleController extends FormController{
+class StyleController extends BaseController{
 
-    public function __construct()
-    {
-        $this->model = 'Style';
-        $this->fields_all = [
-            'id' => [
-                'show' => '序号',
-            ],
-            'components_id' => [
-                'show' => '姓名',
-                'type' => 'sector',
-            ],
-            'pic_path' => [
-                'show' => '演示文件',
-                'type' => 'file',
-            ],
-            'min_api' => [
-                'show' => 'Api版本',
-            ],
-            'price' => [
-                'show' => '报价',
-            ],
-            'title' => [
-                'show' => '效果标题',
-                'search' => [
-                    'type' => 'like',
-                    'value' => '%?%'
-                ]
-            ],
-            'descriptions' => [
-                'show' => '效果描述',
-                'type' => 'textarea',
-            ],
-            'use_times' => [
-                'show' => '使用次数',
-            ],
-            'created_at' => [
-                'show' => '创建时间',
-            ],
-            'updated_at' => [
-                'show' => '更新时间',
-            ]
-        ];
-
-        $this->fields_show = ['id' ,'title','pic_path','components_id','price','min_api', 'use_times',
-            'created_at'];
-        $this->fields_edit = ['title','pic_path', 'components_id','price','min_api','descriptions'];
-        $this->fields_create = ['title', 'pic_path', 'components_id','price','min_api','descriptions'];
-        parent::__construct();
-    }
-
-    public function show(){
+    public function showProducts(){
 
         return View::Make('product.show');
 
+    }
+    /**
+     * Display a listing of products
+     *
+     * @return Response
+     */
+
+    public function index(){
+
+        $builder = Style::orderBy('id', 'asc');
+        $input = Input::all();
+        foreach ($input as $field => $value) {
+            if (empty($value)) {
+                continue;
+            }
+            if (!isset($this->fields_search[$field])) {
+                continue;
+            }
+            $search = $this->fields_search[$field];
+            $builder->whereRaw($search['search'], [$value]);
+        }
+        $models = $builder->paginate(20);
+        return View::make('admin.style.index', [
+            'models' => $models
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new product
+     *
+     * @return Response
+     */
+    public function create(){
+        return View::make('admin.style.create');
+    }
+
+    /**
+     * Store a newly created product in storage.
+     *
+     * @return Response
+     */
+
+    public function store(){
+
+        $model = new Style;
+        $validator = Validator::make($data = Input::all(),Style::$rules);
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        $model->create($data);
+        return Redirect::to('/admin/style');
+
+    }
+
+    /**
+     * Display the specified product.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
+    public function show($id){
+
+        return App::abort(404);
+
+    }
+
+    /**
+     * Show the form for editing the specified product.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
+    public function edit($id){
+        $model = Style::find($id);
+        return View::make('admin.style.edit', compact('model'));
+    }
+
+    /**
+     * Update the specified product in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
+    public function update($id){
+
+        $model = Style::findOrFail($id);
+
+        $validator = Validator::make($data = Input::all(), Style::$rules);
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        $model->update($data);
+
+        return Redirect::to('/admin/style');
+    }
+
+    /**
+     * Remove the specified product from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
+    public function destroy($id){
+
+        Style::destroy($id);
+        return Redirect::to('/admin/style');
     }
 }

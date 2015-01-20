@@ -1,7 +1,7 @@
 @extends('admin.layout.form')
 {{-- Web site Title --}}
 @section('title')
-    {{{ $title }}}
+    {{{ '客户项目管理' }}}
 @stop
 @section('styles')
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -9,10 +9,10 @@
 @section('content')
     <div class="page-header">
         <h3>
-            {{{ $title }}}
+            {{{ '客户项目管理' }}}
 
             <div class="pull-right">
-                <a href="{{{ URL::to('admin/users/create') }}}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> 添加用户</a>
+                <a href="{{{ URL::to('admin/customer/create') }}}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> 添加客户项目</a>
             </div>
         </h3>
     </div>
