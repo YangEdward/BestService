@@ -8,9 +8,28 @@
 
 class UserController extends BaseController{
 
+    /**
+     * Displays the login form
+     *
+     */
+    public function getLogin()
+    {
+        $user = Auth::user();
+        if(!empty($user->id)){
+            return Redirect::to('/admin/users');
+        }
+
+        return View::make('admin.user.login');
+    }
+
+    /**
+     * Attempt to do login
+     *
+     */
     public function postLogin(){
 
     }
+
 
     public function index(){
 

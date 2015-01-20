@@ -24,7 +24,8 @@ Route::get('/admin/users/show/{id}', 'UserController@show');
 Route::get('/admin/users/edit/{id}', 'UserController@edit');
 Route::post('/admin/users/destroy/{id}', 'UserController@destroy');
 Route::post('/admin/users/update/{id}', 'UserController@update');
-Route::post('user/login', 'UserController@postLogin');
+Route::get('/user/login', 'UserController@getLogin');
+Route::post('/user/post_login', 'UserController@postLogin');
 
 /* Component about*/
 Route::resource('admin/main-class', 'ComponentController');

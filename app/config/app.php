@@ -122,6 +122,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
+		'Zizaco\Confide\ServiceProvider',
+		'Zizaco\Entrust\EntrustServiceProvider',
 	),
 
 	/*
@@ -191,6 +193,8 @@ return array(
 
 
 		'String'          => 'Andrew13\Helpers\String', // String
+		'Confide'    => 'Zizaco\Confide\Facade',
+		'Entrust'    => 'Zizaco\Entrust\EntrustFacade',
 	),
 	'available_language' => array('en', 'zh'),
 );

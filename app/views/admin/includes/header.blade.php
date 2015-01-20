@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="/">首页 <span class="sr-only">(current)</span></a></li>
-                <li {{ (Request::is('admin') ? ' class="active"' : '') }}><a href="/admin">登录</a></li>
+                <li {{ (Request::is('user/login') ? ' class="active"' : '') }}><a href="/user/login">登录</a></li>
                 <li {{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="/admin/users">用户管理</a></li>
                 <li {{ (Request::is('admin/main-class*') ? ' class="active"' : '') }}{{ (Request::is('admin/component*') ? ' class="active"' : '') }}   ><a href="/admin/main-class">类型管理</a></li>
                 <li {{ (Request::is('admin/style*') ? ' class="active"' : '') }}><a href="/admin/style">样式管理</a></li>
