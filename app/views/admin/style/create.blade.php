@@ -76,9 +76,11 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="col-md-offset-4 btn btn-success">点击这里提交</button>
+                <button type="submit" id="submit" class="col-md-offset-4 btn btn-success disabled">点击这里提交</button>
             </div>
         </form>
+
+{{--        <a href="/uploads/dynamiclistview.gif" target="_blank"><img src="/uploads/dynamiclistview.gif" style="width: 100px"></a>--}}
     </div>
 @stop
 
@@ -86,10 +88,16 @@
     <script type="text/javascript">
         $(document).ready(function() {
             // Generate a simple captcha
-
-            $('#defaultForm').formValidation({
+                var validator = $('#defaultForm').formValidation({
                 framework: 'bootstrap',
                 message: 'This value is not valid',
+                button: {
+                    // The submit buttons selector
+                    selector: '[type="submit"]',
+
+                    // The disabled class
+                    disabled: 'disabled'
+                },
                 icon: {
                     valid: 'glyphicon glyphicon-ok',
                     invalid: 'glyphicon glyphicon-remove',
@@ -137,6 +145,25 @@
                         }
                     }
                 }
+            });
+
+            $('form').on('err.form.fv', function(e) {
+                // $(e.target) --> The form instance
+                // $(e.target).data('formValidation')
+                //             --> The FormValidation instance
+                if(!$('#submit').hasClass('disabled')){
+                    $('#submit').addClass('disabled');
+                }
+
+                // Do something ...
+            }).on('success.form.fv', function(e) {
+                // The e parameter is same as one
+                // in the err.form.fv event above
+                if(validator.getInvalidFields().length == 0 &&
+                        ('#submit').hasClass('disabled')){
+                    $('#submit').removeClass('disabled');
+                }
+                // Do something ...
             });
         });
     </script>
