@@ -11,6 +11,7 @@ class Style extends Eloquent {
     protected $fillable = array('components_id','pic_path','min_api',
         'price', 'title','descriptions');
 
+    public $components_name;
     // Add your validation rules here
     public static $rules = [
         'components_id' => 'required',
@@ -20,5 +21,9 @@ class Style extends Eloquent {
 
     public function component(){
         return $this->belongsTo('Component');
+    }
+
+    public function myComponent(){
+        return Component::find($this->id);
     }
 }

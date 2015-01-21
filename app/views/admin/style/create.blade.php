@@ -32,9 +32,9 @@
                 <label for="components_id" class="col-md-2 control-label">所属类型：</label>
                 <div class="col-md-6">
                     <select class="form-control" id="components_id" name="components_id">
-                        <option value="Android">Android</option>
-                        <option value="Ios">Ios</option>
-                        <option value="Web">Web</option>
+                        <option value="1">Android</option>
+                        <option value="2">Ios</option>
+                        <option value="3">Web</option>
                     </select>
                 </div>
             </div>
@@ -64,11 +64,17 @@
             </div>
 
             <div class="form-group">
+                <input type="hidden" id="pic_path" name="pic_path" value="">
+            </div>
+
+            <div class="form-group">
                 <label for="inputFile" class="col-md-2 control-label">样式文件上传：</label>
                 <div class="col-md-6">
-                    <input type="file" id="inputFile" name="inputFile">
+                    @plupload()
+                   {{-- <input type="file" id="inputFile" name="inputFile">--}}
                 </div>
             </div>
+
             <div class="form-group">
                 <button type="submit" class="col-md-offset-4 btn btn-success">点击这里提交</button>
             </div>

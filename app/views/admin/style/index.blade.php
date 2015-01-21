@@ -32,13 +32,13 @@
                     <tr class="row">
                         <td class="col-md-1">{{$model->id}}</td>
                         <td class="col-md-2">
-                            <p>{{{ Lang::get('admin/style.components_name').' : '.$model->Component->name}}}</p>
+                            <p>{{{ Lang::get('admin/style.components_name').' : '.$model->components_id}}}</p>
                             <p>{{{ Lang::get('admin/style.min_api').' : '.$model->min_api }}}</p>
                             <p>{{{ Lang::get('admin/style.price').' : '.$model->price }}}</p>
                             <p>{{{ Lang::get('admin/style.use_times').' : '.$model->use_times }}}</p>
                         </td>
                         <td class="col-md-7">
-                            <p>{{{ Lang::get('admin/style.title').' : '.$model->title }}}</p>
+                            <p>{{{ Lang::get('admin/style.title').' : '}}}<a href="/uploads/{{{$model->pic_path}}}" >{{{$model->title }}}</a></p>
                             <p>{{{ Lang::get('admin/style.descriptions').' : '.$model->descriptions }}}</p></td>
                         <td class="col-md-1 col-md-offset-1 text-center">
                             <a href="{{{ URL::to('admin/style/edit',$model->id) }}}" class="btn btn-link">

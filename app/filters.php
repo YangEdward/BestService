@@ -52,7 +52,7 @@ Route::filter('admin', function()
 	}
 });
 
-Route::when('admin/*', 'admin');
+//Route::when('admin/*', 'admin');
 
 Route::filter('auth.basic', function()
 {

@@ -57,6 +57,15 @@ Route::get('/admin/process/edit/{id}', 'ProjectProcessController@edit');
 Route::post('/admin/process/destroy/{id}', 'ProjectProcessController@destroy');
 Route::post('/admin/process/update/{id}', 'ProjectProcessController@update');
 
+Route::post('/upload', function()
+{
+	return Plupload::receive('file', function ($file)
+	{
+		$file->move(storage_path() . '/test/', $file->getClientOriginalName());
+
+		return 'ready';
+	});
+});
 
 Route::get('/', 'LoginController@login');
 

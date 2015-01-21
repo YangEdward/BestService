@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'Asia/Shanghai',//'Asia/Shanghai',//'UTC',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'zh',
+	'locale' => 'zh_CN',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -124,6 +124,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Zizaco\Confide\ServiceProvider',
 		'Zizaco\Entrust\EntrustServiceProvider',
+		'Fojuth\Plupload\PluploadServiceProvider',
 	),
 
 	/*
@@ -196,5 +197,5 @@ return array(
 		'Confide'    => 'Zizaco\Confide\Facade',
 		'Entrust'    => 'Zizaco\Entrust\EntrustFacade',
 	),
-	'available_language' => array('en', 'zh'),
+	'available_language' => array('en', 'zh_CN'),
 );

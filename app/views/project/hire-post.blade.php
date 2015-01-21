@@ -73,7 +73,8 @@
             <div class="form-group">
                 <label for="inputFile" class="col-md-2 control-label">项目需求文件上传：</label>
                 <div class="col-md-6">
-                    <input type="file" id="inputFile" name="inputFile">
+                    @plupload()
+                    {{--<input type="file" id="inputFile" name="inputFile">--}}
                     @if ($errors->has('inputFile'))
                         <p class="help-block">{{ $errors->first('inputFile') }}</p>
                     @else <p class="help-block">需求请尽可能详细，</p>
