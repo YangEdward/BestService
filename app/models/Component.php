@@ -11,6 +11,8 @@ class Component extends Eloquent{
     protected $fillable = array('chinese_name', 'english_name', 'icon','descriptions',
         'belongs');
 
+    protected $table = 'components';
+
     // Add your validation rules here
     public static $rules = [
         'chinese_name' => 'required',
@@ -20,7 +22,7 @@ class Component extends Eloquent{
         'belongs' => 'required',
     ];
 
-    public function myStyles(){
+    public function styles(){
         return $this->hasMany('Style');
     }
 }

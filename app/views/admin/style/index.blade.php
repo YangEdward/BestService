@@ -32,7 +32,7 @@
                     <tr class="row">
                         <td class="col-md-1">{{$model->id}}</td>
                         <td class="col-md-2">
-                            <p>{{{ Lang::get('admin/style.components_name').' : '.$model->components_id}}}</p>
+                            <p>{{ Lang::get('admin/style.components_name').' : '.$model->chineseName()}}</p>
                             <p>{{{ Lang::get('admin/style.min_api').' : '.$model->min_api }}}</p>
                             <p>{{{ Lang::get('admin/style.price').' : '.$model->price }}}</p>
                             <p>{{{ Lang::get('admin/style.use_times').' : '.$model->use_times }}}</p>
@@ -54,6 +54,7 @@
                 @endforeach
                 {{--</tbody>--}}
             </table>
+            <div class="text-right">{{$models->links()}}</div>
         </div>
 @stop
 {{-- Scripts --}}

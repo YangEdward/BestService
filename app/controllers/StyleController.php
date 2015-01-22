@@ -13,6 +13,13 @@ class StyleController extends BaseController{
         return View::Make('product.show');
 
     }
+
+    public function getStylesByComponentId($componentId){
+        if(Request::ajax()){
+            return Style::where('components_id','=',$componentId);
+        }
+        return null;
+    }
     /**
      * Display a listing of products
      *

@@ -56,6 +56,7 @@
                 @endforeach
                 {{--</tbody>--}}
             </table>
+            <div class="text-right">{{$models->links()}}</div>
         </div>
 @stop
 {{-- Scripts --}}

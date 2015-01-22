@@ -15,15 +15,22 @@ class Style extends Eloquent {
     // Add your validation rules here
     public static $rules = [
         'components_id' => 'required',
-        'pic_path' => 'required',
+        'pic_path' => 'required|unique',
         'min_api' => 'required'
     ];
 
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'styles';
+
     public function component(){
-        return $this->belongsTo('Component');
+        return $this->belongsTo('Component','components_id');
     }
 
-    public function myComponent(){
-        return Component::find($this->id);
+    public function chineseName(){
+        return '<i class="fa '.$this->component->icon.'"></i> '.$this->component->chinese_name;
     }
 }
