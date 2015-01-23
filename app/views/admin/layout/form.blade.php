@@ -33,5 +33,6 @@
     @yield('content')
     @include('includes.footer')
 </div>
+@yield('foot_script')
 </body>
 </html>

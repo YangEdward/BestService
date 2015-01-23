@@ -19,5 +19,6 @@
             $('[data-toggle="tooltip"]').tooltip();
         })
     </script>
+    @yield('foot_script')
 </body>
 </html>

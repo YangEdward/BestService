@@ -30,6 +30,7 @@ Route::post('/user/post_login', 'UserController@postLogin');
 /* Component about*/
 Route::resource('admin/main-class', 'ComponentController');
 Route::get('/admin/component/edit/{id}', 'ComponentController@edit');
+Route::get('/admin/component/{belong}', 'ComponentController@getByBelongs');
 Route::post('/admin/component/destroy/{id}', 'ComponentController@destroy');
 Route::post('/admin/component/update/{id}', 'ComponentController@update');
 
@@ -38,6 +39,7 @@ Route::resource('/admin/style', 'StyleController');
 Route::get('/admin/style/edit/{id}', 'StyleController@edit');
 Route::post('/admin/style/destroy/{id}', 'StyleController@destroy');
 Route::post('/admin/style/update/{id}', 'StyleController@update');
+Route::get('/style/{id}', 'StyleController@getByComponentId');
 
 /* customer project about*/
 Route::resource('/admin/customer', 'CustomerProjectController');
@@ -69,7 +71,7 @@ Route::post('/upload', function()
 
 Route::get('/', 'LoginController@login');
 
-Route::get('product/show', 'StyleController@showProducts');
+Route::get('product/show', 'ComponentController@getAll');
 
 Route::get('project/hire-post', 'CustomerProjectController@hirePost');
 

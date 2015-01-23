@@ -23,6 +23,6 @@ class Component extends Eloquent{
     ];
 
     public function styles(){
-        return $this->hasMany('Style');
+        return $this->hasMany('Style','components_id');
     }
 }

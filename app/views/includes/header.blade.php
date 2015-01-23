@@ -1,11 +1,3 @@
-<script>
-    $(function(){
-        $('#bs-example-navbar-collapse-1 ul li a').click(function(){
-            $(this).addClass('active');
-        })
-    })
-</script>
-
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->

@@ -14,9 +14,9 @@ class StyleController extends BaseController{
 
     }
 
-    public function getStylesByComponentId($componentId){
+    public function getByComponentId($componentId){
         if(Request::ajax()){
-            return Style::where('components_id','=',$componentId);
+            return Style::where('components_id','=',$componentId)->get();
         }
         return null;
     }
@@ -71,6 +71,9 @@ class StyleController extends BaseController{
         }
 
         $model->create($data);
+        $component = Component::find($model->components_id);
+        $component->numbers ++;
+        $component->save();
         return Redirect::to('/admin/style');
 
     }

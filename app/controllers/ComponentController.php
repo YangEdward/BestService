@@ -18,6 +18,19 @@ class ComponentController extends BaseController{
         ],
     ];
 
+    public function getByBelongs($belong){
+        return Component::where('belongs','=',$belong)->get();
+    }
+
+    public function getAll(){
+        $android = $this->getByBelongs('Android');
+        $ios = $this->getByBelongs('Ios');
+        $web = $this->getByBelongs('Web');
+        View::share('android', $android);
+        View::share('ios', $ios);
+        View::share('web', $web);
+        return View::Make('product.show');
+    }
     /**
      * Display a listing of products
      *
@@ -26,7 +39,7 @@ class ComponentController extends BaseController{
 
     public function index(){
 
-        $builder = Component::orderBy('id', 'desc');
+        $builder = Component::orderBy('id', 'asc');
         $input = Input::all();
         foreach ($input as $field => $value) {
             if (empty($value)) {
