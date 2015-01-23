@@ -14,9 +14,9 @@ class Style extends Eloquent {
     public $components_name;
     // Add your validation rules here
     public static $rules = [
-        'components_id' => 'required',
-        'pic_path' => 'required|unique',
-        'min_api' => 'required'
+        //'components_id' => 'required',
+        //'pic_path' => 'required|unique',
+        //'min_api' => 'required'
     ];
 
     /**

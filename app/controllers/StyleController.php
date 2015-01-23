@@ -62,8 +62,11 @@ class StyleController extends BaseController{
      */
 
     public function store(){
-
+        Session::flash('notice', '用户添加成功！！');
+        return Redirect::to('/admin/style');
+        /*echo "store";
         $model = new Style;
+        var_dump(Input::all());
         $validator = Validator::make($data = Input::all(),Style::$rules);
         if ($validator->fails())
         {
@@ -74,7 +77,7 @@ class StyleController extends BaseController{
         $component = Component::find($model->components_id);
         $component->numbers ++;
         $component->save();
-        return Redirect::to('/admin/style');
+        return Redirect::to('/admin/style');*/
 
     }
 

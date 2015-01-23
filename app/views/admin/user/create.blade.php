@@ -80,7 +80,7 @@
     </div>
 @stop
 
-@section('script')
+@section('foot_script')
     <script type="text/javascript">
         $(document).ready(function() {
             // Generate a simple captcha

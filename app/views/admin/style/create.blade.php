@@ -64,14 +64,13 @@
             </div>
 
             <div class="form-group">
-                <input type="hidden" id="pic_path" name="pic_path" value="">
+                <input type="text" id="pic_path" name="pic_path" value="">
             </div>
 
             <div class="form-group">
                 <label for="inputFile" class="col-md-2 control-label">样式文件上传：</label>
                 <div class="col-md-6">
                     @plupload()
-                   {{-- <input type="file" id="inputFile" name="inputFile">--}}
                 </div>
             </div>
 
@@ -79,25 +78,16 @@
                 <button type="submit" id="submit" class="col-md-offset-4 btn btn-success disabled">点击这里提交</button>
             </div>
         </form>
-
-{{--        <a href="/uploads/dynamiclistview.gif" target="_blank"><img src="/uploads/dynamiclistview.gif" style="width: 100px"></a>--}}
-    </div>
+ </div>
 @stop
 
-@section('script')
+@section('foot_script')
     <script type="text/javascript">
         $(document).ready(function() {
             // Generate a simple captcha
-                var validator = $('#defaultForm').formValidation({
+                $('#defaultForm').formValidation({
                 framework: 'bootstrap',
                 message: 'This value is not valid',
-                button: {
-                    // The submit buttons selector
-                    selector: '[type="submit"]',
-
-                    // The disabled class
-                    disabled: 'disabled'
-                },
                 icon: {
                     valid: 'glyphicon glyphicon-ok',
                     invalid: 'glyphicon glyphicon-remove',
@@ -135,14 +125,6 @@
                                 message: '描述限制300汉字哦'
                             }
                         }
-                    },
-
-                    inputFile: {
-                        validators: {
-                            notEmpty: {
-                                message: '上传样式展示效果文件'
-                            }
-                        }
                     }
                 }
             });
@@ -159,12 +141,38 @@
             }).on('success.form.fv', function(e) {
                 // The e parameter is same as one
                 // in the err.form.fv event above
-                if(validator.getInvalidFields().length == 0 &&
-                        ('#submit').hasClass('disabled')){
-                    $('#submit').removeClass('disabled');
-                }
                 // Do something ...
             });
+
+            /*jQuery.getJSON('/admin/component/Android',function(){
+
+            }).done(function(result){
+                $("#components_id").remove("option");
+                var board = document.getElementById("components_id");
+                for(var i=0; i < result.length;i++){
+                    var e2 = document.createElement("option");
+                    e2.setAttribute("value", result[i].id);
+                    e2.innerHTML = result[i].english_name;
+                    board.appendChild(e2)
+                }
+            })*/
         });
+
+        $("#belongs").onchange(function(){
+            /*var url = '/admin/component/'+$(this).options[$(this).selectedIndex].value;
+            jQuery.getJSON(url,function(){
+
+             }).done(function(result){
+             $("#components_id").remove("option");
+             var board = document.getElementById("components_id");
+             for(var i=0; i < result.length;i++){
+             var e2 = document.createElement("option");
+             e2.setAttribute("value", result[i].id);
+             e2.innerHTML = result[i].english_name;
+             board.appendChild(e2)
+             }
+             })*/
+        })
     </script>
+    @parent
 @stop

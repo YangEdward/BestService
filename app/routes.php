@@ -41,6 +41,7 @@ Route::post('/admin/style/destroy/{id}', 'StyleController@destroy');
 Route::post('/admin/style/update/{id}', 'StyleController@update');
 Route::get('/style/{id}', 'StyleController@getByComponentId');
 
+
 /* customer project about*/
 Route::resource('/admin/customer', 'CustomerProjectController');
 Route::get('/admin/customer/edit/{id}', 'CustomerProjectController@edit');

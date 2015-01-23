@@ -14,11 +14,7 @@ class LoginController extends BaseController {
 	{
 		//session_start();
 		//session_regenerate_id(true);
-		$results = DB::select('select * from users where id = ?',array(1));
-		$users = DB::table('users')->get();
-		$name = $results[0]->name;
-
-		return View::Make('home.login')->with('name', $results);
+		return View::Make('home.login');
 		//return View::make('welcome.index');
 	}
 
