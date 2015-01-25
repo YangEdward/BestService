@@ -8,7 +8,7 @@
 
 class ProjectProcess extends Eloquent{
 
-    protected $fillable = array('back_reason', 'answer');
+    protected $table = 'pro_processes';
 
     // Add your validation rules here
     public static $rules = [

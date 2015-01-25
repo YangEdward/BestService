@@ -5,9 +5,10 @@
  * Date: 2015/1/15
  * Time: 11:08
  */
-use Illuminate\Database\Eloquent;
 
 class StaffProject extends Eloquent{
+
+    protected $table = 'staff_projects';
 
     // Add your validation rules here
     public static $rules = [

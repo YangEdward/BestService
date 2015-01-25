@@ -1,7 +1,7 @@
 @extends('admin.layout.form')
 {{-- Web site Title --}}
 @section('title')
-    {{{ '客户项目管理' }}}
+    {{{ '客户项目管理->预览' }}}
 @stop
 @section('styles')
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -9,7 +9,7 @@
 @section('content')
     <div class="page-header">
         <h3>
-            {{{ '客户项目管理' }}}
+            {{{ '客户项目管理->预览' }}}
 
             <div class="pull-right">
                 <a href="{{{ URL::to('admin/customer/create') }}}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> 添加客户项目</a>
@@ -37,11 +37,6 @@
                         <td class="col-md-2">{{$model->email}}</td>
                         <td class="col-md-2">{{$model->telphone}}</td>
                         <td class="col-md-2">{{$model->created_at}}</td>
-                        <td class="col-md-1 col-md-offset-1 text-center">
-                            <a href="{{{ URL::to('admin/users/show',array('id'=>$model->id)) }}}" class="btn btn-link">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                            </a>
-                        </td>
                         <td class="col-md-1">
                             <a href="{{{ URL::to('admin/users/edit',$model->id) }}}" class="btn btn-link">
                                 <span class="glyphicon glyphicon-pencil"></span>

@@ -8,7 +8,7 @@
         ?>
 @extends('admin.layout.form')
 @section('title')
-    {{{ '用户管理->编辑' }}}
+    {{{ '合伙人项目管理->编辑' }}}
 @stop
 @section('styles')
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -16,7 +16,7 @@
 @section('content')
     <div class="page-header">
         <h3>
-            {{{ '用户管理->编辑' }}}
+            {{{ '合伙人项目管理->编辑' }}}
         </h3>
     </div>
     <div class="row">
