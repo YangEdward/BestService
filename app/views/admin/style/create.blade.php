@@ -64,7 +64,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" id="pic_path" name="pic_path" value="">
+                <input type="hidden" id="pic_path" name="pic_path" value="">
             </div>
 
             <div class="form-group">
@@ -101,7 +101,7 @@
                             },
                             stringLength: {
                                 max: 100,
-                                message: '地址信息过长哦，莫超过100个汉字或字符'
+                                message: '标题信息过长哦，莫超过100个汉字或字符'
                             }
                         }
                     },

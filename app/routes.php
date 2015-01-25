@@ -16,7 +16,6 @@
 	return View::make('hello');
 });*/
 
-Route::get('/wel', 'WelcomeController@index');
 
 /* Users about*/
 Route::resource('/admin/users', 'UserController');
@@ -89,7 +88,3 @@ Route::get('about-us', function(){
 	return View::make('about.about-us');
 });
 
-Route::get('/users', function()
-{
-	return View::make('users');
-});
