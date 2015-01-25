@@ -82,6 +82,7 @@ class ComponentController extends BaseController{
         }
 
         $model->create($data);
+        Session::flash('notice', '类型添加成功！！');
         return Redirect::to('/admin/main-class');
 
     }
@@ -131,7 +132,7 @@ class ComponentController extends BaseController{
         }
 
         $model->update($data);
-
+        Session::flash('notice', '类型更新成功！！');
         return Redirect::to('/admin/main-class');
     }
 

@@ -10,10 +10,6 @@
     <div class="page-header">
         <h3>
             {{{ '项目过程管理->预览' }}}
-
-            <div class="pull-right">
-                <a href="{{{ URL::to('admin/users/create') }}}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> 添加用户</a>
-            </div>
         </h3>
     </div>
 

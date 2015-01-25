@@ -3,7 +3,7 @@
     <h3 class="text-center"><strong>项目信息提交</strong></h3>
     <p>请将您要提交的项目信息填写完整，便于优服科技给您提供更加优质的项目开发和管理服务。</p>
     <div class="row">
-        <form id="defaultForm" method="post" class="form-horizontal" action="/">
+        <form id="defaultForm" method="post" class="form-horizontal" action="{{action('CustomerProjectController@store')}}">
             <div class="form-group">
                 <label for="title" class="col-md-2 control-label">项目名称：</label>
                 <div class="col-md-6">
@@ -16,34 +16,34 @@
                 <label class="col-md-2 control-label">项目类型：</label>
                     <div class="col-md-2">
                         <label>
-                            <input type="checkbox" name="belong" value="android" /> Android应用
+                            <input type="checkbox" name="belong1" value="android" /> Android应用
                         </label>
                     </div>
                     <div class="col-md-2">
                         <label>
-                            <input type="checkbox" name="belong" value="ios" /> Ios应用
+                            <input type="checkbox" name="belong2" value="ios" /> Ios应用
                         </label>
                     </div>
                     <div class="col-md-2">
                         <label>
-                            <input type="checkbox" name="belong" value="web" /> Web应用
+                            <input type="checkbox" name="belong3" value="web" /> Web应用
                         </label>
                     </div>
             </div>
 
             <div class="form-group">
-                <label for="description" class="col-md-2 control-label">项目概述：</label>
+                <label for="brief" class="col-md-2 control-label">项目概述：</label>
                 <div class="col-md-6">
-                    <textarea type="text" class="form-control" id="description" name="description"
-                      placeholder="请输入项目概述" rows="6" value="{{ Input::old('description') }}"></textarea>
+                    <textarea type="text" class="form-control" id="brief" name="brief"
+                      placeholder="请输入项目概述" rows="6" value="{{ Input::old('brief') }}"></textarea>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="name" class="col-md-2 control-label">您的称呼：</label>
+                <label for="user_name" class="col-md-2 control-label">您的称呼：</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="name" placeholder="请问您怎么称呼？"
-                           value="{{ Input::old('name') }}" name="name">
+                    <input type="text" class="form-control" id="user_name" placeholder="请问您怎么称呼？"
+                           value="{{ Input::old('user_name') }}" name="user_name">
                 </div>
             </div>
 
@@ -64,24 +64,25 @@
             </div>
 
             <div class="form-group">
-                <label for="finishTime" class="col-md-2 control-label">项目计划完成时间：</label>
+                <label for="finished_times" class="col-md-2 control-label">项目计划完成时间：</label>
                 <div class="col-md-6">
-                    <input type="date" class="form-control" id="finishTime">
+                    <input type="date" class="form-control" id="finished_times" name="finished_times">
                 </div>
             </div>
 
             <div class="form-group">
+                <input type="hidden" id="file_path" name="file_path">
+            </div>
+            <div class="form-group">
                 <label for="inputFile" class="col-md-2 control-label">项目需求文件上传：</label>
                 <div class="col-md-6">
-                    @plupload()
-                    {{--<input type="file" id="inputFile" name="inputFile">--}}
+                    @include('project.upload_files')
                     @if ($errors->has('inputFile'))
                         <p class="help-block">{{ $errors->first('inputFile') }}</p>
-                    @else <p class="help-block">需求请尽可能详细，</p>
+                    @else <p class="help-block">请提交zip压缩文件，且需求请尽可能详细。</p>
                     @endif
                 </div>
             </div>
-
 
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-2">
@@ -97,6 +98,10 @@
             </div>
         </form>
     </div>
+@stop
+@section('foot_script')
+    {{ HTML::script('/dist/js/formValidation.min.js') }}
+    {{ HTML::script('/dist/js/framework/bootstrap.min.js') }}
     <script type="text/javascript">
         $(document).ready(function() {
             // Generate a simple captcha

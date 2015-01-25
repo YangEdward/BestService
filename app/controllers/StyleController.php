@@ -74,11 +74,37 @@ class StyleController extends BaseController{
         }
 
         $model->create($data);
+        Session::flash('notice', '样式添加成功！！');
         $component = Component::find($model->components_id);
         $component->numbers ++;
         $component->save();
         return Redirect::to('/admin/style');*/
 
+    }
+
+    public function loadFiles(){
+        // We simply move the uploaded file to the target directory
+        $result = Input::file('file')->move('uploads', Input::file('file')->getClientOriginalName());
+
+        // Return the result of the upload
+        return $this->respond(array('OK' => ($result) ? 1 : 0));
+    }
+
+    /**
+     * Method returning the response.
+     *
+     * @param array $response The response to be returned.
+     * @return string
+     * @throws \InvalidArgumentException Thrown when the response is empty.
+     */
+    public function respond(array $response) {
+
+        // We have to return something
+        if (true === empty($response)) {
+            throw new \InvalidArgumentException('No response to return.');
+        }
+
+        return \Response::json($response);
     }
 
     /**
@@ -125,7 +151,7 @@ class StyleController extends BaseController{
         }
 
         $model->update($data);
-
+        Session::flash('notice', '类型更新成功！！');
         return Redirect::to('/admin/style');
     }
 

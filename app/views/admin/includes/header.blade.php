@@ -22,6 +22,7 @@
                 <li {{ (Request::is('admin/customer*') ? ' class="active"' : '') }}><a href="/admin/customer">客户项目管理</a></li>
                 <li {{ (Request::is('admin/staff*') ? ' class="active"' : '') }}><a href="/admin/staff">合伙项目管理</a></li>
                 <li {{ (Request::is('admin/process*') ? ' class="active"' : '') }}><a href="/admin/process">项目进程管理</a></li>
+                <li {{ (Request::is('user/login') ? ' class="hidden"' : '')}} ><a href="{{URL::to('/user/post_login_out')}}">登出</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

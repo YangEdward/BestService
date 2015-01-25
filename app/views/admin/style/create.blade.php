@@ -70,7 +70,7 @@
             <div class="form-group">
                 <label for="inputFile" class="col-md-2 control-label">样式文件上传：</label>
                 <div class="col-md-6">
-                    @plupload()
+                    @include('admin.style.upload_files')
                 </div>
             </div>
 

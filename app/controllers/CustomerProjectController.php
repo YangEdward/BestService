@@ -59,14 +59,48 @@ class CustomerProjectController extends BaseController{
         $validator = Validator::make($data = Input::all(),CustomerProject::$rules);
         if ($validator->fails())
         {
-            return Redirect::back()->withErrors($validator)->withInput();
+            Session::flash('notice', '项目提交失败,文件重新命名上传');
+            return Redirect::back();
         }
-
-        $model->create($data);
-        return Redirect::back()->with('messages', '项目提交成功。谢谢您对我公司的信赖，我们会第一时间联系您!');
+        //$model->create(Input::all());
+        $model->title = Input::get('title');
+        $model->brief = Input::get('brief');
+        $model->user_name = Input::get('user_name');
+        $model->email = Input::get('email');
+        $model->phone = Input::get('phone');
+        $model->finished_times = Input::get('finished_times');
+        $model->file_path = Input::get('file_path');
+        $model->belong = Input::get('belong1').','.Input::get('belong2').','.Input::get('belong3');
+        $model->save();
+        Session::flash('notice', '项目提交成功。谢谢您对我公司的信赖，我们会第一时间联系您!');
+        return Redirect::back();
 
     }
 
+    public function loadFiles(){
+        // We simply move the uploaded file to the target directory
+        $result = Input::file('file')->move('customerFiles', Input::file('file')->getClientOriginalName());
+
+        // Return the result of the upload
+        return $this->respond(array('OK' => ($result) ? 1 : 0));
+    }
+
+    /**
+     * Method returning the response.
+     *
+     * @param array $response The response to be returned.
+     * @return string
+     * @throws \InvalidArgumentException Thrown when the response is empty.
+     */
+    public function respond(array $response) {
+
+        // We have to return something
+        if (true === empty($response)) {
+            throw new \InvalidArgumentException('No response to return.');
+        }
+
+        return \Response::json($response);
+    }
     /**
      * Display the specified product.
      *
@@ -102,16 +136,15 @@ class CustomerProjectController extends BaseController{
     public function update($id){
 
         $model = CustomerProject::findOrFail($id);
-
-        $validator = Validator::make($data = Input::all(), CustomerProject::$rules);
-
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
-
-        $model->update($data);
-
+        $model->title = Input::get('title');
+        $model->brief = Input::get('brief');
+        $model->user_name = Input::get('user_name');
+        $model->email = Input::get('email');
+        $model->phone = Input::get('phone');
+        $model->finished_times = Input::get('finished_times');
+        $model->belong = Input::get('belong1').','.Input::get('belong2').','.Input::get('belong3');
+        $model->update();
+        Session::flash('notice', '项目更新成功。谢谢您对我公司的信赖，我们会第一时间联系您!');
         return Redirect::to('/admin/customer');
     }
 

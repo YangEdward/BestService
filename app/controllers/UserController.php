@@ -26,10 +26,25 @@ class UserController extends BaseController{
      * Attempt to do login
      *
      */
-    public function postLogin(){
-
+    public function postLoginOut(){
+        Auth::logout();
+        return Redirect::to('/admin/users');
     }
 
+    /**
+     * Attempt to do login
+     *
+     */
+    public function postLogin(){
+        $email = Input::get('email');
+        $password = Input::get('password');
+        if (Auth::attempt(array('email' => $email, 'password' => $password)))
+        {
+            return Redirect::to('/admin/users');
+        }
+        Session::flash('notice','邮箱或密码错误，请重新登录');
+        return Redirect::back();
+    }
 
     public function index(){
 
@@ -127,7 +142,7 @@ class UserController extends BaseController{
         }
 
         $model->update($data);
-
+        Session::flash('notice', '用户更新成功！！');
         return Redirect::to('/admin/users');
     }
 

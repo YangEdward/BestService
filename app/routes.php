@@ -26,6 +26,8 @@ Route::post('/admin/users/destroy/{id}', 'UserController@destroy');
 Route::post('/admin/users/update/{id}', 'UserController@update');
 Route::get('/user/login', 'UserController@getLogin');
 Route::post('/user/post_login', 'UserController@postLogin');
+Route::get('/user/post_login_out', 'UserController@postLoginOut');
+
 
 /* Component about*/
 Route::resource('admin/main-class', 'ComponentController');
@@ -40,13 +42,20 @@ Route::get('/admin/style/edit/{id}', 'StyleController@edit');
 Route::post('/admin/style/destroy/{id}', 'StyleController@destroy');
 Route::post('/admin/style/update/{id}', 'StyleController@update');
 Route::get('/style/{id}', 'StyleController@getByComponentId');
-
+/**
+ * The route for the Plupload gate.
+ */
+Route::any('style/file_load', 'StyleController@loadFiles');
 
 /* customer project about*/
 Route::resource('/admin/customer', 'CustomerProjectController');
 Route::get('/admin/customer/edit/{id}', 'CustomerProjectController@edit');
 Route::post('/admin/customer/destroy/{id}', 'CustomerProjectController@destroy');
 Route::post('/admin/customer/update/{id}', 'CustomerProjectController@update');
+/**
+ * The route for the Plupload gate.
+ */
+Route::any('customer/file_load', 'CustomerProjectController@loadFiles');
 
 /* staff project about*/
 Route::get('/admin/staff', 'StaffProjectController@index');

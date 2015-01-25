@@ -15,6 +15,9 @@ return array(
 
     'id' => '序号',
     'title' => '标题',
+    'customer_info' => '客户信息',
+    'base_info' => '基本信息',
+    'detail_info' => '详细信息',
     'belong' => '属于',
     'brief' => '简介',
     'user_name' => '客户名称',

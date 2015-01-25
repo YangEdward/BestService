@@ -9,7 +9,7 @@
 class CustomerProject extends Eloquent {
 
     protected $fillable = array('title', 'brief', 'user_name','email',
-        'phone','finished_times');
+        'phone','finished_times','file_path');
 
     protected  $errors;
 
@@ -20,18 +20,17 @@ class CustomerProject extends Eloquent {
     // create the validation rules ------------------------
     public static $rules = [
         'title'             => 'required', 						// just a normal required validation
-        'belong'            => 'required', 	// required and must be unique in the ducks table
         'user_name'         => 'required',
         'email'             => 'required|email', 			// required and has to match the password field
         'phone'             => 'required',
-        'file_path'         => 'required|unique'
+        'file_path'         => 'required'
     ];
 
     // create custom validation messages ------------------
     protected static $messages = [
         'name.required' => 'My custom message for :attribute required',
         'required' => 'The :attribute is really really really important.',
-        'same' 	=> 'The :others must match.'
+        'email' 	=> '邮件地址错误'
     ];
 
     public function __construct(array $attributes = array(), Validator $validator = null)
