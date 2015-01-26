@@ -10,9 +10,6 @@
 @section('title')
     {{{ '用户管理->添加' }}}
 @stop
-@section('styles')
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-@stop
 @section('content')
     <div class="page-header">
         <h3>

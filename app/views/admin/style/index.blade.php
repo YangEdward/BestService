@@ -12,7 +12,7 @@
             {{{ '样式管理' }}}
 
             <div class="pull-right">
-                <a href="{{{ URL::to('admin/style/create') }}}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> 添加样式</a>
+                <a href="{{{ action('StyleController@create') }}}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> 添加样式</a>
             </div>
         </h3>
     </div>
@@ -41,14 +41,15 @@
                             <p>{{{ Lang::get('admin/style.title').' : '}}}<a href="/uploads/{{{$model->pic_path}}}" >{{{$model->title }}}</a></p>
                             <p>{{{ Lang::get('admin/style.descriptions').' : '.$model->descriptions }}}</p></td>
                         <td class="col-md-1 col-md-offset-1 text-center">
-                            <a href="{{{ URL::to('admin/style/edit',$model->id) }}}" class="btn btn-link">
+                            <a href="{{{ action('StyleController@edit',$model->id) }}}" class="btn btn-link">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                         </td>
                         <td class="col-md-1">
-                            <a href="{{{ URL::to('admin/style/destroy',$model->id) }}}" class="btn btn-link">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
+                            {{ Form::open(array('url' => action('StyleController@destroy', $model->id)))}}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span></button>
+                            {{ Form::close() }}
                         </td>
                     </tr>
                 @endforeach

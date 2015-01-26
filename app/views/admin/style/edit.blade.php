@@ -10,9 +10,6 @@
 @section('title')
     {{{ '用户管理->编辑' }}}
 @stop
-@section('styles')
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-@stop
 @section('content')
     <div class="page-header">
         <h3>
@@ -20,7 +17,8 @@
         </h3>
     </div>
     <div class="row">
-        <form id="defaultForm" class="form-horizontal" method="post" action="{{URL::to("/admin/style/update", $model->id)}}">
+        <form id="defaultForm" class="form-horizontal" method="post" action="{{action('StyleController@update', $model->id)}}">
+            <input type="hidden" name="_method" value="PUT">
             <div class="form-group">
                 <label for="title" class="col-md-2 control-label">标题：</label>
                 <div class="col-md-6">
@@ -32,9 +30,9 @@
                 <label for="components_id" class="col-md-2 control-label">所属类型：</label>
                 <div class="col-md-6">
                     <select class="form-control" id="components_id" name="components_id">
-                        <option value="Android">Android</option>
-                        <option value="Ios">Ios</option>
-                        <option value="Web">Web</option>
+                        <option value="1">Android</option>
+                        <option value="2">Ios</option>
+                        <option value="3">Web</option>
                     </select>
                 </div>
             </div>
@@ -62,13 +60,6 @@
                               rows="6">{{ $model->descriptions }}</textarea>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label for="inputFile" class="col-md-2 control-label">样式文件上传：</label>
-                <div class="col-md-6">
-                    <input type="file" id="inputFile" name="inputFile">
-                </div>
-            </div>
             <div class="form-group">
                 <button type="submit" class="col-md-offset-4 btn btn-success">点击这里更新</button>
             </div>
@@ -76,7 +67,7 @@
     </div>
 @stop
 
-@section('script')
+@section('foot_script')
     <script type="text/javascript">
         $(document).ready(function() {
             // Generate a simple captcha

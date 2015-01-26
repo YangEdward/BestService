@@ -12,7 +12,7 @@
             {{{ $title }}}
 
             <div class="pull-right">
-                <a href="{{{ URL::to('admin/users/create') }}}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> 添加用户</a>
+                <a href="{{{ URL::to('admin/user/create') }}}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> 添加用户</a>
             </div>
         </h3>
     </div>
@@ -38,19 +38,20 @@
                         <td class="col-md-2">{{$model->telphone}}</td>
                         <td class="col-md-2">{{$model->created_at}}</td>
                         <td class="col-md-1 col-md-offset-1 text-center">
-                            <a href="{{{ URL::to('admin/users/show',array('id'=>$model->id)) }}}" class="btn btn-link">
+                            <a href="{{{ URL::to('admin/user',array('id' => $model->id)) }}}" class="btn btn-link">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
                         </td>
                         <td class="col-md-1">
-                            <a href="{{{ URL::to('admin/users/edit',$model->id) }}}" class="btn btn-link">
+                            <a href="{{{ URL::to('admin/user/'.$model->id.'/edit') }}}" class="btn btn-link">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                         </td>
                         <td class="col-md-1">
-                            <a href="{{{ URL::to('admin/users/destroy',$model->id) }}}" class="btn btn-link">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
+                            {{ Form::open(array('url' => action('UserController@destroy', $model->id)))}}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span></button>
+                            {{ Form::close() }}
                         </td>
                     </tr>
                 @endforeach
@@ -59,8 +60,4 @@
             </table>
             <div class="text-right">{{$models->links()}}</div>
         </div>
-@stop
-{{-- Scripts --}}
-@section('scripts')
-
 @stop

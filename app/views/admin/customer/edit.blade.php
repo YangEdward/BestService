@@ -20,7 +20,8 @@
         </h3>
     </div>
     <div class="row">
-        <form id="defaultForm" method="post" class="form-horizontal" action="{{URL::to("/admin/customer/update", $model->id)}}">
+        <form id="defaultForm" method="post" class="form-horizontal" action="{{action('CustomerProjectController@update', $model->id)}}">
+            <input type="hidden" name="_method" value="PUT">
             <div class="form-group">
                 <label for="title" class="col-md-2 control-label">项目名称：</label>
                 <div class="col-md-6">

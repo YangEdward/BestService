@@ -83,7 +83,7 @@ class ComponentController extends BaseController{
 
         $model->create($data);
         Session::flash('notice', '类型添加成功！！');
-        return Redirect::to('/admin/main-class');
+        return Redirect::to('/admin/component');
 
     }
 
@@ -133,7 +133,7 @@ class ComponentController extends BaseController{
 
         $model->update($data);
         Session::flash('notice', '类型更新成功！！');
-        return Redirect::to('/admin/main-class');
+        return Redirect::to('/admin/component');
     }
 
     /**
@@ -146,6 +146,6 @@ class ComponentController extends BaseController{
     public function destroy($id){
 
         Component::destroy($id);
-        return Redirect::to('/admin/main-class');
+        return Redirect::to('/admin/component');
     }
 }

@@ -23,7 +23,9 @@
 		================================================== -->
 {{ HTML::style('/css/bootstrap.min.css') }}
 {{ HTML::style('/dist/css/formValidation.min.css') }}
-@yield('styles')
+{{ HTML::style('/css/font-awesome.min.css') }}
+{{--    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">--}}
+    @yield('styles')
 <style>
     body{
         padding-top: 70px;

@@ -12,7 +12,7 @@
             {{{ '类型管理' }}}
 
             <div class="pull-right">
-                <a href="{{{ URL::to('admin/main-class/create') }}}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> 添加控件类型</a>
+                <a href="{{{ action('ComponentController@create')}}}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> 添加控件类型</a>
             </div>
         </h3>
     </div>
@@ -38,14 +38,15 @@
                         <td class="col-md-5">{{$model->descriptions}}</td>
                         <td class="col-md-2">{{$model->created_at}}</td>
                         <td class="col-md-1">
-                            <a href="{{{ URL::to('admin/component/edit',$model->id) }}}" class="btn btn-link">
+                            <a href="{{{ action('ComponentController@edit', $model->id)}}}" class="btn btn-link">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                         </td>
                         <td class="col-md-1">
-                            <a href="{{{ URL::to('admin/component/destroy',$model->id) }}}" class="btn btn-link">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
+                            {{ Form::open(array('url' => action('ComponentController@destroy', $model->id)))}}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            <button type="submit" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button>
+                            {{ Form::close() }}
                         </td>
                     </tr>
                 @endforeach

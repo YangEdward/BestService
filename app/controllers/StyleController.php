@@ -62,11 +62,7 @@ class StyleController extends BaseController{
      */
 
     public function store(){
-        Session::flash('notice', '用户添加成功！！');
-        return Redirect::to('/admin/style');
-        /*echo "store";
         $model = new Style;
-        var_dump(Input::all());
         $validator = Validator::make($data = Input::all(),Style::$rules);
         if ($validator->fails())
         {
@@ -74,11 +70,11 @@ class StyleController extends BaseController{
         }
 
         $model->create($data);
-        Session::flash('notice', '样式添加成功！！');
-        $component = Component::find($model->components_id);
+        $component = Component::find(Input::get('components_id'));
         $component->numbers ++;
         $component->save();
-        return Redirect::to('/admin/style');*/
+        Session::flash('notice', '样式添加成功！！');
+        return Redirect::to('/admin/style');
 
     }
 
@@ -151,7 +147,7 @@ class StyleController extends BaseController{
         }
 
         $model->update($data);
-        Session::flash('notice', '类型更新成功！！');
+        Session::flash('notice', '样式更新成功！！');
         return Redirect::to('/admin/style');
     }
 
@@ -164,7 +160,11 @@ class StyleController extends BaseController{
 
     public function destroy($id){
 
+        $model = Style::find($id);
         Style::destroy($id);
+        $component = Component::find($model->components_id);
+        $component->numbers --;
+        $component->save();
         return Redirect::to('/admin/style');
     }
 }

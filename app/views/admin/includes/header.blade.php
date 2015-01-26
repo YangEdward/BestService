@@ -16,8 +16,8 @@
             <ul class="nav navbar-nav">
                 <li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="/">首页 <span class="sr-only">(current)</span></a></li>
                 <li {{ (Request::is('user/login') ? ' class="active"' : '') }}><a href="/user/login">登录</a></li>
-                <li {{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="/admin/users">用户管理</a></li>
-                <li {{ (Request::is('admin/main-class*') ? ' class="active"' : '') }}{{ (Request::is('admin/component*') ? ' class="active"' : '') }}   ><a href="/admin/main-class">类型管理</a></li>
+                <li {{ (Request::is('admin/user*') ? ' class="active"' : '') }}><a href="/admin/user">用户管理</a></li>
+                <li {{ (Request::is('admin/component*') ? ' class="active"' : '') }} ><a href="/admin/component">类型管理</a></li>
                 <li {{ (Request::is('admin/style*') ? ' class="active"' : '') }}><a href="/admin/style">样式管理</a></li>
                 <li {{ (Request::is('admin/customer*') ? ' class="active"' : '') }}><a href="/admin/customer">客户项目管理</a></li>
                 <li {{ (Request::is('admin/staff*') ? ' class="active"' : '') }}><a href="/admin/staff">合伙项目管理</a></li>

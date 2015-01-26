@@ -1,17 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2015/1/15
- * Time: 13:54
- */
-        ?>
 @extends('admin.layout.form')
 @section('title')
     {{{ '类型管理->编辑' }}}
-@stop
-@section('styles')
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 @stop
 @section('content')
     <div class="page-header">
@@ -20,7 +9,8 @@
         </h3>
     </div>
     <div class="row">
-        <form id="defaultForm" class="form-horizontal" method="post" action="{{URL::to("/admin/component/update", $model->id)}}">
+        <form id="defaultForm" class="form-horizontal" method="post" action="{{action('ComponentController@update', $model->id)}}">
+            <input type="hidden" name="_method" value="PUT">
             <div class="form-group">
                 <label for="chinese_name" class="col-md-2 control-label">中文名称：</label>
                 <div class="col-md-6">
@@ -66,7 +56,7 @@
     </div>
 @stop
 
-@section('script')
+@section('foot_script')
     <script type="text/javascript">
         $(document).ready(function() {
             // Generate a simple captcha

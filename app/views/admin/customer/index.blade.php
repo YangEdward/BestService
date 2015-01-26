@@ -46,14 +46,15 @@
                             <p>{{{ Lang::get('admin/customer.title').' : '}}}<a href="/customerFiles/{{{$model->file_path}}}" >{{{$model->title }}}</a></p>
                             <p>{{{ Lang::get('admin/customer.brief').' : '.$model->brief }}}</p></td>
                         <td class="col-md-1 col-md-offset-1 text-center">
-                            <a href="{{{ URL::to('admin/customer/edit',$model->id) }}}" class="btn btn-link">
+                            <a href="{{{ action('CustomerProjectController@edit',$model->id) }}}" class="btn btn-link">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                         </td>
                         <td class="col-md-1">
-                            <a href="{{{ URL::to('admin/customer/destroy',$model->id) }}}" class="btn btn-link">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
+                            {{ Form::open(array('url' => action('CustomerProjectController@destroy', $model->id)))}}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span></button>
+                            {{ Form::close() }}
                         </td>
                     </tr>
                 @endforeach

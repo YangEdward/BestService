@@ -11,62 +11,32 @@
 |
 */
 
-/*Route::get('/', function()
+Route::group(array('prefix' => 'admin'), function()
 {
-	return View::make('hello');
-});*/
-
+	Route::resource('user', 'UserController');
+	Route::resource('component', 'ComponentController');
+	Route::resource('style', 'StyleController');
+	Route::resource('customer', 'CustomerProjectController');
+	Route::resource('staff', 'StaffProjectController');
+	Route::resource('process', 'ProjectProcessController');
+});
 
 /* Users about*/
-Route::resource('/admin/users', 'UserController');
-Route::get('/admin/users/show/{id}', 'UserController@show');
-Route::get('/admin/users/edit/{id}', 'UserController@edit');
-Route::post('/admin/users/destroy/{id}', 'UserController@destroy');
-Route::post('/admin/users/update/{id}', 'UserController@update');
 Route::get('/user/login', 'UserController@getLogin');
 Route::post('/user/post_login', 'UserController@postLogin');
 Route::get('/user/post_login_out', 'UserController@postLoginOut');
 
-
 /* Component about*/
-Route::resource('admin/main-class', 'ComponentController');
-Route::get('/admin/component/edit/{id}', 'ComponentController@edit');
 Route::get('/admin/component/{belong}', 'ComponentController@getByBelongs');
-Route::post('/admin/component/destroy/{id}', 'ComponentController@destroy');
-Route::post('/admin/component/update/{id}', 'ComponentController@update');
+
 
 /* Style about*/
-Route::resource('/admin/style', 'StyleController');
-Route::get('/admin/style/edit/{id}', 'StyleController@edit');
-Route::post('/admin/style/destroy/{id}', 'StyleController@destroy');
-Route::post('/admin/style/update/{id}', 'StyleController@update');
 Route::get('/style/{id}', 'StyleController@getByComponentId');
 /**
- * The route for the Plupload gate.
+ * The route for the load file.
  */
 Route::any('style/file_load', 'StyleController@loadFiles');
-
-/* customer project about*/
-Route::resource('/admin/customer', 'CustomerProjectController');
-Route::get('/admin/customer/edit/{id}', 'CustomerProjectController@edit');
-Route::post('/admin/customer/destroy/{id}', 'CustomerProjectController@destroy');
-Route::post('/admin/customer/update/{id}', 'CustomerProjectController@update');
-/**
- * The route for the Plupload gate.
- */
 Route::any('customer/file_load', 'CustomerProjectController@loadFiles');
-
-/* staff project about*/
-Route::get('/admin/staff', 'StaffProjectController@index');
-Route::get('/admin/staff/edit/{id}', 'StaffProjectController@edit');
-Route::post('/admin/staff/destroy/{id}', 'StaffProjectController@destroy');
-Route::post('/admin/staff/update/{id}', 'StaffProjectController@update');
-
-/* customer project about*/
-Route::get('/admin/process', 'ProjectProcessController@index');
-Route::get('/admin/process/edit/{id}', 'ProjectProcessController@edit');
-Route::post('/admin/process/destroy/{id}', 'ProjectProcessController@destroy');
-Route::post('/admin/process/update/{id}', 'ProjectProcessController@update');
 
 Route::post('/upload', function()
 {

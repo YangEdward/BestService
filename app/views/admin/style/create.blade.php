@@ -10,9 +10,6 @@
 @section('title')
     {{{ '样式管理->添加' }}}
 @stop
-@section('styles')
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-@stop
 @section('content')
     <div class="page-header">
         <h3>
@@ -20,7 +17,7 @@
         </h3>
     </div>
     <div class="container row">
-        <form id="defaultForm" class="form-horizontal" method="post" action="{{action("StyleController@store")}}">
+        <form id="defaultForm" class="form-horizontal" method="post" action="{{action('StyleController@store')}}">
             <div class="form-group">
                 <label for="title" class="col-md-2 control-label">标题：</label>
                 <div class="col-md-6">
@@ -64,7 +61,7 @@
             </div>
 
             <div class="form-group">
-                <input type="hidden" id="pic_path" name="pic_path" value="">
+                <input type="hidden" id="pic_path" name="pic_path">
             </div>
 
             <div class="form-group">
@@ -75,7 +72,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" id="submit" class="col-md-offset-4 btn btn-success disabled">点击这里提交</button>
+                <button type="submit" id="sub_button" class="col-md-offset-4 btn btn-success disabled">点击这里提交</button>
             </div>
         </form>
  </div>
@@ -129,21 +126,6 @@
                 }
             });
 
-            $('form').on('err.form.fv', function(e) {
-                // $(e.target) --> The form instance
-                // $(e.target).data('formValidation')
-                //             --> The FormValidation instance
-                if(!$('#submit').hasClass('disabled')){
-                    $('#submit').addClass('disabled');
-                }
-
-                // Do something ...
-            }).on('success.form.fv', function(e) {
-                // The e parameter is same as one
-                // in the err.form.fv event above
-                // Do something ...
-            });
-
             /*jQuery.getJSON('/admin/component/Android',function(){
 
             }).done(function(result){
@@ -158,8 +140,8 @@
             })*/
         });
 
-        $("#belongs").onchange(function(){
-            /*var url = '/admin/component/'+$(this).options[$(this).selectedIndex].value;
+        /*$("#belongs").onchange(function(){
+            var url = '/admin/component/'+$(this).options[$(this).selectedIndex].value;
             jQuery.getJSON(url,function(){
 
              }).done(function(result){
@@ -171,8 +153,8 @@
              e2.innerHTML = result[i].english_name;
              board.appendChild(e2)
              }
-             })*/
-        })
+             })
+        })*/
     </script>
     @parent
 @stop

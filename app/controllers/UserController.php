@@ -16,7 +16,7 @@ class UserController extends BaseController{
     {
         $user = Auth::user();
         if(!empty($user->id)){
-            return Redirect::to('/admin/users');
+            return Redirect::to('/admin/user');
         }
 
         return View::make('admin.user.login');
@@ -28,7 +28,7 @@ class UserController extends BaseController{
      */
     public function postLoginOut(){
         Auth::logout();
-        return Redirect::to('/admin/users');
+        return Redirect::to('/admin/user');
     }
 
     /**
@@ -40,7 +40,7 @@ class UserController extends BaseController{
         $password = Input::get('password');
         if (Auth::attempt(array('email' => $email, 'password' => $password)))
         {
-            return Redirect::to('/admin/users');
+            return Redirect::to('/admin/user');
         }
         Session::flash('notice','邮箱或密码错误，请重新登录');
         return Redirect::back();
@@ -90,23 +90,29 @@ class UserController extends BaseController{
         {
             return Redirect::back()->withErrors($validator)->withInput();
         }
-
-        $model->create(Input::all());
+        $model->name = Input::get('name');
+        $model->email = Input::get('email');
+        $model->password = Hash::make(Input::get('password'));
+        $model->telphone = Input::get('telphone');
+        $model->tencent = Input::get('tencent');
+        $model->area = Input::get('area');
+        $model->company = Input::get('company');
+        $model->save();
         Session::flash('notice', '用户添加成功！！');
-        return Redirect::to('/admin/users');
+        return Redirect::to('/admin/user');
 
     }
 
     /**
      * Display the specified product.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return Response
      */
 
-    public function show($id){
+    public function show($user){
 
-        $model = User::findOrFail($id);
+        $model = User::findOrFail($user->id);
         return View::make('admin.user.show', compact('model'));
 
     }
@@ -114,25 +120,25 @@ class UserController extends BaseController{
     /**
      * Show the form for editing the specified product.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return Response
      */
 
-    public function edit($id){
-        $model = User::find($id);
+    public function edit($user){
+        $model = User::find($user->id);
         return View::make('admin.user.edit', compact('model'));
     }
 
     /**
      * Update the specified product in storage.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return Response
      */
 
-    public function update($id){
+    public function update($user){
 
-        $model = User::findOrFail($id);
+        $model = User::findOrFail($user->id);
 
         $validator = Validator::make($data = Input::all(), User::$rules);
 
@@ -143,19 +149,19 @@ class UserController extends BaseController{
 
         $model->update($data);
         Session::flash('notice', '用户更新成功！！');
-        return Redirect::to('/admin/users');
+        return Redirect::to('/admin/user/');
     }
 
     /**
      * Remove the specified product from storage.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return Response
      */
 
-    public function destroy($id){
+    public function destroy($user){
 
-        User::destroy($id);
-        return Redirect::to('/admin/users');
+        User::destroy($user->id);
+        return Redirect::to('/admin/user');
     }
 }

@@ -10,9 +10,6 @@
 @section('title')
     {{{ '用户管理->编辑' }}}
 @stop
-@section('styles')
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-@stop
 @section('content')
     <div class="page-header">
         <h3>
@@ -20,7 +17,8 @@
         </h3>
     </div>
     <div class="row">
-        <form id="defaultForm" class="form-horizontal" method="post" action="{{URL::to("/admin/users/update", $model->id)}}">
+        <form id="defaultForm" class="form-horizontal" method="post" action="{{action("UserController@update", $model->id)}}">
+            <input type="hidden" name="_method" value="PUT">
             <div class="form-group">
                 <label for="name" class="col-md-2 control-label">姓名：</label>
                 <div class="col-md-6">
@@ -70,7 +68,7 @@
     </div>
 @stop
 
-@section('script')
+@section('foot_script')
     <script type="text/javascript">
         $(document).ready(function() {
             // Generate a simple captcha
