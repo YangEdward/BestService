@@ -68,12 +68,16 @@ class StyleController extends BaseController{
         {
             return Redirect::back()->withErrors($validator)->withInput();
         }
-
-        $model->create($data);
         $component = Component::find(Input::get('components_id'));
         $component->numbers ++;
-        $component->save();
-        Session::flash('notice', '样式添加成功！！');
+        DB::beginTransaction();
+        if($model->create($data) && $component->save()){
+            Session::flash('notice', '样式添加成功！！');
+            DB::commit();
+        }else{
+            Session::flash('notice','样式添加失败');
+            DB::rollback();
+        }
         return Redirect::to('/admin/style');
 
     }
@@ -161,10 +165,15 @@ class StyleController extends BaseController{
     public function destroy($id){
 
         $model = Style::find($id);
-        Style::destroy($id);
         $component = Component::find($model->components_id);
         $component->numbers --;
-        $component->save();
+        DB::beginTransaction();
+        if(Style::destroy($id) && $component->save()){
+            DB::commit();
+        }else{
+            Session::flash('notice','样式删除失败');
+            DB::rollback();
+        }
         return Redirect::to('/admin/style');
     }
 }
